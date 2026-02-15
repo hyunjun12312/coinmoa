@@ -1,0 +1,157 @@
+{
+  "meta": {
+    "title": "CryptoPulse - Real-Time Crypto News · Prices · SNS Feed",
+    "description": "Check real-time cryptocurrency prices, news, influencer SNS feeds, and Kimchi Premium all in one place. All the information you need for crypto investing in real-time.",
+    "keywords": "bitcoin, ethereum, cryptocurrency, coin prices, kimchi premium, crypto news, real-time prices, bitcoin forecast"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "news": "News",
+    "social": "SNS Feed",
+    "kimchi": "Kimchi Premium",
+    "tools": "Tools",
+    "search": "Search"
+  },
+  "common": {
+    "live": "LIVE",
+    "refresh": "Refresh",
+    "loading": "Loading...",
+    "noData": "No data available.",
+    "all": "All",
+    "coin": "Coin",
+    "price": "Price",
+    "change24h": "24h",
+    "marketCap": "Market Cap",
+    "volume24h": "Volume (24h)",
+    "chart7d": "7D Chart",
+    "rank": "#",
+    "secondsAgo": "s ago",
+    "minutesAgo": "m ago",
+    "hoursAgo": "h ago",
+    "daysAgo": "d ago",
+    "adSlot": "AD SLOT",
+    "adArea": "Ad Area",
+    "disclaimer": "This site is for informational purposes only, not investment advice."
+  },
+  "dashboard": {
+    "title": "Real-Time Dashboard",
+    "realTimePrice": "Real-Time Prices",
+    "top100": "Top 100 Cryptocurrencies",
+    "fearGreedIndex": "Fear & Greed Index",
+    "totalMarketCap": "Total Market Cap",
+    "btcDominance": "BTC Dominance",
+    "volume24h": "24h Volume",
+    "activeCoins": "coins",
+    "trendingCoins": "Trending Coins",
+    "extremeFear": "Extreme Fear",
+    "fear": "Fear",
+    "neutral": "Neutral",
+    "greed": "Greed",
+    "extremeGreed": "Extreme Greed"
+  },
+  "news": {
+    "title": "📰 Real-Time Crypto News",
+    "subtitle": "Real-time crawling of cryptocurrency news from major media outlets worldwide. Sentiment analysis (positive/negative/neutral) included to gauge market mood at a glance.",
+    "realTimeNews": "Real-Time News",
+    "sentiment": {
+      "positive": "Positive",
+      "negative": "Negative",
+      "neutral": "Neutral"
+    },
+    "categories": {
+      "all": "All",
+      "btc": "BTC",
+      "eth": "ETH",
+      "defi": "DeFi",
+      "regulation": "Regulation",
+      "exchange": "Exchange"
+    }
+  },
+  "social": {
+    "title": "👥 SNS / Influencer Feed",
+    "subtitle": "Aggregating real-time posts from crypto influencers, Reddit, and major media. Coin-related keywords are auto-tagged for easy filtering.",
+    "feedTitle": "SNS / Community Feed",
+    "monitoring": "Monitored Key Influencers",
+    "allPlatforms": "All",
+    "allCoins": "All Coins"
+  },
+  "kimchi": {
+    "title": "🇰🇷 Kimchi Premium Monitor",
+    "subtitle": "Real-time comparison of coin prices between Upbit (KRW) and Binance (USDT). Auto-refreshes every 30 seconds.",
+    "monitor": "Kimchi Premium Monitor",
+    "avgPremium": "Avg Premium",
+    "exchangeRate": "USD/KRW",
+    "monitoring": "Monitoring",
+    "upbitKRW": "Upbit (KRW)",
+    "binanceKRW": "Binance (KRW equiv.)",
+    "premium": "Premium",
+    "whatIs": "💡 What is Kimchi Premium?",
+    "whatIsDesc": "Kimchi Premium refers to the price difference of cryptocurrencies between Korean exchanges (Upbit, etc.) and overseas exchanges (Binance, etc.). A positive premium occurs when Korean demand is high, and a negative premium when demand is low. Typically 1-3%, but can exceed 10% during bull runs.",
+    "positive": "Positive",
+    "positiveDesc": "KR price > Global",
+    "zero": "Zero",
+    "zeroDesc": "Same price",
+    "negative": "Negative",
+    "negativeDesc": "KR price < Global"
+  },
+  "tools": {
+    "title": "🛠️ Crypto Investment Tools",
+    "subtitle": "Useful calculators and tools for cryptocurrency investing.",
+    "profitCalc": {
+      "title": "💰 Profit Calculator",
+      "buyPrice": "Buy Price",
+      "sellPrice": "Sell Price",
+      "quantity": "Quantity",
+      "fee": "Fee (%)",
+      "calculate": "Calculate",
+      "investment": "Investment",
+      "revenue": "Revenue",
+      "profit": "Profit/Loss",
+      "profitRate": "Return Rate"
+    },
+    "positionCalc": {
+      "title": "📐 Position Size Calculator",
+      "totalCapital": "Total Capital",
+      "riskPercent": "Risk (%)",
+      "entryPrice": "Entry Price",
+      "stopLoss": "Stop Loss",
+      "calculate": "Calculate",
+      "riskAmount": "Risk Amount",
+      "positionSize": "Position Size",
+      "quantity": "Quantity"
+    },
+    "converter": {
+      "title": "🔄 Crypto Converter",
+      "amount": "Amount",
+      "from": "From",
+      "to": "To",
+      "result": "Result"
+    }
+  },
+  "coin": {
+    "detailTitle": "Detail",
+    "overview": "Overview",
+    "priceChart": "Price Chart",
+    "marketData": "Market Data",
+    "high24h": "24h High",
+    "low24h": "24h Low",
+    "circulatingSupply": "Circulating Supply",
+    "totalSupply": "Total Supply",
+    "allTimeHigh": "All-Time High",
+    "allTimeLow": "All-Time Low",
+    "day": "1D",
+    "week": "1W",
+    "month": "1M",
+    "threeMonths": "3M",
+    "year": "1Y"
+  },
+  "footer": {
+    "description": "Real-time cryptocurrency information platform.\nPrices, news, SNS feeds, and Kimchi Premium in one place.",
+    "price": "Prices",
+    "info": "Information",
+    "notice": "Notice",
+    "disclaimerFull": "This site is for informational purposes only, not investment advice. Cryptocurrency investments carry the risk of principal loss.",
+    "copyright": "© 2026 CryptoPulse. Real-time crypto information platform.",
+    "dataBy": "Data by CoinGecko, Upbit, Binance, CryptoCompare"
+  }
+}
