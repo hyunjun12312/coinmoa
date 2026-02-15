@@ -44,8 +44,8 @@ export default function SearchPage() {
   }, [query]);
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6">
-      <h1 className="text-lg font-semibold">{t.nav.search}</h1>
+    <div className="max-w-3xl mx-auto space-y-8">
+      <h1 className="text-xl font-semibold">{t.nav.search}</h1>
 
       {/* Search Input */}
       <div className="flex gap-2">
@@ -85,12 +85,12 @@ export default function SearchPage() {
       )}
 
       {!loading && results.length > 0 && (
-        <div className="space-y-2">
+        <div className="space-y-3">
           {results.map((coin) => (
             <Link
               key={coin.id}
               href={`/${lang}/coin/${coin.id}`}
-              className="card flex items-center gap-4 group"
+              className="card flex items-center gap-5 group"
             >
               <img src={coin.image} alt={coin.name} className="h-10 w-10 rounded-full" />
               <div className="flex-1 min-w-0">

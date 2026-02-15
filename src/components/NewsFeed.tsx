@@ -64,9 +64,9 @@ export default function NewsFeed({ limit = 20 }: { limit?: number }) {
   return (
     <div>
       {/* Header */}
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <h2 className="text-sm font-semibold">{t.news.realTimeNews}</h2>
+          <h2 className="text-base font-semibold">{t.news.realTimeNews}</h2>
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--accent-green)] live-dot" />
         </div>
         <button onClick={fetchNews} className="text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors">
@@ -75,7 +75,7 @@ export default function NewsFeed({ limit = 20 }: { limit?: number }) {
       </div>
 
       {/* Filters */}
-      <div className="flex gap-1.5 mb-3 overflow-x-auto pb-1">
+      <div className="flex gap-2 mb-4 overflow-x-auto pb-1">
         {filters.map(f => (
           <button
             key={f.id}
@@ -88,24 +88,24 @@ export default function NewsFeed({ limit = 20 }: { limit?: number }) {
       </div>
 
       {/* News List */}
-      <div className="space-y-1.5">
+      <div className="space-y-1">
         {filtered.slice(0, limit).map((item) => (
           <a
             key={item.id}
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block rounded-lg px-3 py-2.5 transition-colors hover:bg-[var(--bg-card)] group"
+            className="block rounded-lg px-4 py-3.5 transition-colors hover:bg-[var(--bg-card)] group"
           >
             <div className="flex items-start gap-2.5">
               <div className={`mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 ${sentimentDot(item.sentiment)}`} />
               <div className="flex-1 min-w-0">
-                <h3 className="text-[13px] font-medium leading-snug group-hover:text-[var(--accent-blue)] transition-colors line-clamp-2">
+                <h3 className="text-sm font-medium leading-snug group-hover:text-[var(--accent-blue)] transition-colors line-clamp-2">
                   {item.title}
                 </h3>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="text-[10px] text-[var(--accent-blue)]/70">{item.source}</span>
-                  <span className="text-[10px] text-[var(--text-tertiary)]">{timeAgo(item.publishedAt)}</span>
+                <div className="flex items-center gap-2.5 mt-1.5">
+                  <span className="text-[11px] text-[var(--accent-blue)]/70">{item.source}</span>
+                  <span className="text-[11px] text-[var(--text-tertiary)]">{timeAgo(item.publishedAt)}</span>
                 </div>
               </div>
               <ExternalLink className="h-3 w-3 text-[var(--text-tertiary)] shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity" />

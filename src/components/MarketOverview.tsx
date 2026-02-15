@@ -49,7 +49,7 @@ export default function MarketOverview() {
     return (
       <div className="grid gap-3 grid-cols-2 md:grid-cols-4">
         {[...Array(4)].map((_, i) => (
-          <div key={i} className="card animate-pulse h-[88px]" />
+          <div key={i} className="card animate-pulse h-[100px]" />
         ))}
       </div>
     );
@@ -64,11 +64,11 @@ export default function MarketOverview() {
   const marketCapChange = global?.marketCapChangePercentage24h || 0;
 
   return (
-    <div className="space-y-3">
-      <div className="grid gap-3 grid-cols-2 md:grid-cols-4">
+    <div className="space-y-5">
+      <div className="grid gap-4 grid-cols-2 md:grid-cols-4">
         {/* Fear & Greed */}
-        <div className="card !p-4">
-          <p className="text-[11px] text-[var(--text-secondary)] mb-1.5">{t.dashboard.fearGreedIndex}</p>
+        <div className="card !p-5">
+          <p className="text-xs text-[var(--text-secondary)] mb-2">{t.dashboard.fearGreedIndex}</p>
           <div className="flex items-baseline gap-2">
             <span className="text-2xl font-semibold tabular-nums" style={{ color: fgColor }}>{fgValue}</span>
             <span className="text-[11px] font-medium" style={{ color: fgColor }}>{fgLabel}</span>
@@ -79,8 +79,8 @@ export default function MarketOverview() {
         </div>
 
         {/* Total Market Cap */}
-        <div className="card !p-4">
-          <p className="text-[11px] text-[var(--text-secondary)] mb-1.5">{t.dashboard.totalMarketCap}</p>
+        <div className="card !p-5">
+          <p className="text-xs text-[var(--text-secondary)] mb-2">{t.dashboard.totalMarketCap}</p>
           <div className="text-lg font-semibold">{global ? formatMarketCap(global.totalMarketCap) : '-'}</div>
           <span className={`text-[11px] font-medium ${marketCapChange >= 0 ? 'price-up' : 'price-down'}`}>
             {formatPercent(marketCapChange)}
@@ -88,8 +88,8 @@ export default function MarketOverview() {
         </div>
 
         {/* BTC Dominance */}
-        <div className="card !p-4">
-          <p className="text-[11px] text-[var(--text-secondary)] mb-1.5">{t.dashboard.btcDominance}</p>
+        <div className="card !p-5">
+          <p className="text-xs text-[var(--text-secondary)] mb-2">{t.dashboard.btcDominance}</p>
           <div className="text-lg font-semibold">{global ? `${global.btcDominance.toFixed(1)}%` : '-'}</div>
           <div className="mt-1.5 h-1 w-full rounded-full bg-[var(--bg-secondary)] overflow-hidden">
             <div className="h-full rounded-full bg-[var(--accent-yellow)]/70" style={{ width: `${global?.btcDominance || 0}%` }} />
@@ -97,8 +97,8 @@ export default function MarketOverview() {
         </div>
 
         {/* 24h Volume */}
-        <div className="card !p-4">
-          <p className="text-[11px] text-[var(--text-secondary)] mb-1.5">{t.dashboard.volume24h}</p>
+        <div className="card !p-5">
+          <p className="text-xs text-[var(--text-secondary)] mb-2">{t.dashboard.volume24h}</p>
           <div className="text-lg font-semibold">{global ? formatMarketCap(global.totalVolume) : '-'}</div>
           <span className="text-[11px] text-[var(--text-secondary)]">
             {global ? `${global.activeCryptos?.toLocaleString()} ${t.dashboard.activeCoins}` : '-'}
@@ -108,12 +108,12 @@ export default function MarketOverview() {
 
       {/* Trending */}
       {data?.trending && data.trending.length > 0 && (
-        <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1">
+        <div className="flex gap-3 overflow-x-auto pb-1 -mx-1 px-1">
           {data.trending.map((coin, i) => (
-            <div key={coin.id} className="shrink-0 flex items-center gap-2 rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] px-3 py-2">
-              <img src={coin.thumb} alt={coin.name} className="h-5 w-5 rounded-full" />
-              <span className="text-xs font-medium">{coin.symbol.toUpperCase()}</span>
-              <span className={`text-[11px] font-medium ${coin.priceChangePercentage24h >= 0 ? 'price-up' : 'price-down'}`}>
+            <div key={coin.id} className="shrink-0 flex items-center gap-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] px-4 py-2.5">
+              <img src={coin.thumb} alt={coin.name} className="h-6 w-6 rounded-full" />
+              <span className="text-sm font-medium">{coin.symbol.toUpperCase()}</span>
+              <span className={`text-xs font-medium ${coin.priceChangePercentage24h >= 0 ? 'price-up' : 'price-down'}`}>
                 {formatPercent(coin.priceChangePercentage24h)}
               </span>
             </div>

@@ -80,7 +80,7 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
-  padding: 1.25rem;
+  padding: 1.5rem;
   transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .card:hover {
@@ -124,11 +124,12 @@ body {
 /* Pill buttons – minimal */
 .pill {
   border-radius: 9999px;
-  padding: 0.3rem 0.75rem;
-  font-size: 0.75rem;
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
   font-weight: 500;
   transition: all 0.15s ease;
   border: 1px solid transparent;
+  white-space: nowrap;
 }
 .pill-active {
   background: var(--accent-blue);

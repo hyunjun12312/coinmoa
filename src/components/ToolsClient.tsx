@@ -7,7 +7,7 @@ export default function ToolsClient() {
   const { dictionary: t } = useDictionary();
 
   return (
-    <div className="grid gap-4 lg:grid-cols-2">
+    <div className="grid gap-6 lg:grid-cols-2">
       <ProfitCalculator t={t} />
       <PositionCalculator t={t} />
       <div className="lg:col-span-2">
@@ -49,8 +49,8 @@ function ProfitCalculator({ t }: { t: any }) {
 
   return (
     <div className="card">
-      <h3 className="text-sm font-semibold mb-4">{t.tools.profitCalc.title}</h3>
-      <div className="space-y-3">
+      <h3 className="text-base font-semibold mb-5">{t.tools.profitCalc.title}</h3>
+      <div className="space-y-4">
         <InputField label={t.tools.profitCalc.buyPrice} value={buyPrice} onChange={setBuyPrice} type="number" />
         <InputField label={t.tools.profitCalc.sellPrice} value={sellPrice} onChange={setSellPrice} type="number" />
         <InputField label={t.tools.profitCalc.quantity} value={quantity} onChange={setQuantity} type="number" />
@@ -113,8 +113,8 @@ function PositionCalculator({ t }: { t: any }) {
 
   return (
     <div className="card">
-      <h3 className="text-sm font-semibold mb-4">{t.tools.positionCalc.title}</h3>
-      <div className="space-y-3">
+      <h3 className="text-base font-semibold mb-5">{t.tools.positionCalc.title}</h3>
+      <div className="space-y-4">
         <InputField label={t.tools.positionCalc.totalCapital} value={capital} onChange={setCapital} type="number" />
         <InputField label={t.tools.positionCalc.riskPercent} value={riskPercent} onChange={setRiskPercent} type="number" />
         <InputField label={t.tools.positionCalc.entryPrice} value={entryPrice} onChange={setEntryPrice} type="number" />
@@ -178,8 +178,8 @@ function CryptoConverter({ t }: { t: any }) {
 
   return (
     <div className="card">
-      <h3 className="text-sm font-semibold mb-4">{t.tools.converter.title}</h3>
-      <div className="grid gap-3 md:grid-cols-4 items-end">
+      <h3 className="text-base font-semibold mb-5">{t.tools.converter.title}</h3>
+      <div className="grid gap-4 md:grid-cols-4 items-end">
         <InputField label={t.tools.converter.amount} value={amount} onChange={setAmount} type="number" />
         <div>
           <label className="block text-[11px] text-[var(--text-tertiary)] mb-1">{t.tools.converter.from}</label>
@@ -250,9 +250,9 @@ function InputField({
 
 function ResultCard({ label, value, color }: { label: string; value: string; color?: string }) {
   return (
-    <div className="rounded-lg bg-[var(--bg-secondary)] px-3 py-2.5 text-center">
-      <span className="text-[10px] text-[var(--text-tertiary)] block">{label}</span>
-      <div className="text-[13px] font-semibold mt-0.5 tabular-nums" style={color ? { color } : undefined}>
+    <div className="rounded-lg bg-[var(--bg-secondary)] px-4 py-3 text-center">
+      <span className="text-[11px] text-[var(--text-tertiary)] block">{label}</span>
+      <div className="text-sm font-semibold mt-1 tabular-nums" style={color ? { color } : undefined}>
         {value}
       </div>
     </div>

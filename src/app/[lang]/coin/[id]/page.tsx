@@ -96,30 +96,30 @@ export default function CoinDetailPage() {
   const isPositive = md.price_change_percentage_24h >= 0;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {/* Back + Header */}
       <div>
         <Link
           href={`/${lang}`}
-          className="inline-flex items-center gap-1 text-[13px] text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors mb-4"
+          className="inline-flex items-center gap-1.5 text-sm text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors mb-5"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <ArrowLeft className="h-4 w-4" />
           {t.nav.dashboard}
         </Link>
 
-        <div className="flex items-center gap-3">
-          <img src={coin.image.large} alt={coin.name} className="h-10 w-10 rounded-full" />
+        <div className="flex items-center gap-4">
+          <img src={coin.image.large} alt={coin.name} className="h-12 w-12 rounded-full" />
           <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-lg font-semibold">{coin.name}</h1>
-              <span className="text-xs text-[var(--text-tertiary)] uppercase">{coin.symbol}</span>
-              <span className="text-[10px] bg-[var(--bg-secondary)] px-1.5 py-0.5 rounded text-[var(--text-tertiary)]">
+            <div className="flex items-center gap-2.5">
+              <h1 className="text-xl font-semibold">{coin.name}</h1>
+              <span className="text-sm text-[var(--text-tertiary)] uppercase">{coin.symbol}</span>
+              <span className="text-xs bg-[var(--bg-secondary)] px-2 py-0.5 rounded text-[var(--text-tertiary)]">
                 #{md.market_cap_rank}
               </span>
             </div>
-            <div className="flex items-center gap-2 mt-0.5">
-              <span className="text-xl font-semibold font-mono tabular-nums">{formatPrice(md.current_price.usd)}</span>
-              <span className={`text-[13px] font-medium tabular-nums ${isPositive ? 'price-up' : 'price-down'}`}>
+            <div className="flex items-center gap-3 mt-1">
+              <span className="text-2xl font-semibold font-mono tabular-nums">{formatPrice(md.current_price.usd)}</span>
+              <span className={`text-sm font-medium tabular-nums ${isPositive ? 'price-up' : 'price-down'}`}>
                 {formatPercent(md.price_change_percentage_24h)}
               </span>
             </div>
@@ -131,9 +131,9 @@ export default function CoinDetailPage() {
 
       {/* Chart */}
       <div className="card">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-semibold">{t.coin.priceChart}</h2>
-          <div className="flex gap-1">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-base font-semibold">{t.coin.priceChart}</h2>
+          <div className="flex gap-1.5">
             {dayOptions.map((opt) => (
               <button
                 key={opt.value}
@@ -157,8 +157,8 @@ export default function CoinDetailPage() {
 
       {/* Market Data */}
       <div className="card">
-        <h2 className="text-sm font-semibold mb-3">{t.coin.marketData}</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+        <h2 className="text-base font-semibold mb-4">{t.coin.marketData}</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <DataItem label={t.common.marketCap} value={formatMarketCap(md.market_cap.usd)} />
           <DataItem label={t.common.volume24h} value={formatMarketCap(md.total_volume.usd)} />
           <DataItem label={t.coin.high24h} value={formatPrice(md.high_24h.usd)} />
@@ -173,9 +173,9 @@ export default function CoinDetailPage() {
       {/* Description */}
       {coin.description.en && (
         <div className="card">
-          <h2 className="text-sm font-semibold mb-3">{t.coin.overview}</h2>
+          <h2 className="text-base font-semibold mb-4">{t.coin.overview}</h2>
           <div
-            className="text-[13px] text-[var(--text-secondary)] leading-relaxed prose prose-invert max-w-none"
+            className="text-sm text-[var(--text-secondary)] leading-relaxed prose prose-invert max-w-none"
             dangerouslySetInnerHTML={{ __html: coin.description.en.slice(0, 1000) }}
           />
         </div>
@@ -188,9 +188,9 @@ export default function CoinDetailPage() {
 
 function DataItem({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg bg-[var(--bg-secondary)] px-3 py-2.5">
-      <span className="text-[10px] text-[var(--text-tertiary)] block">{label}</span>
-      <div className="text-[13px] font-semibold mt-0.5 tabular-nums">{value}</div>
+    <div className="rounded-lg bg-[var(--bg-secondary)] px-4 py-3">
+      <span className="text-[11px] text-[var(--text-tertiary)] block">{label}</span>
+      <div className="text-sm font-semibold mt-1 tabular-nums">{value}</div>
     </div>
   );
 }

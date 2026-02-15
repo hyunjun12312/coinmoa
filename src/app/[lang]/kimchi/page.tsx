@@ -10,8 +10,8 @@ export default function KimchiPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-lg font-semibold mb-0.5">{t.kimchi.title}</h1>
-        <p className="text-[13px] text-[var(--text-secondary)]">{t.kimchi.subtitle}</p>
+        <h1 className="text-xl font-semibold mb-1">{t.kimchi.title}</h1>
+        <p className="text-sm text-[var(--text-secondary)]">{t.kimchi.subtitle}</p>
       </div>
 
       <AdBanner slot="kimchi-top" className="min-h-[90px]" />

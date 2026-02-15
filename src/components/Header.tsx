@@ -51,8 +51,8 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--border-color)] bg-[var(--bg-primary)]/80 backdrop-blur-xl">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="flex h-14 items-center justify-between">
+      <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
+        <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href={prefix} className="flex items-center gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--accent-blue)]/10">
@@ -65,30 +65,30 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-0.5">
+          <nav className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[13px] transition-colors ${
+                className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm transition-colors ${
                   isActive(item.href)
                     ? 'text-[var(--text-primary)] bg-[var(--bg-secondary)]'
                     : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                 }`}
               >
-                <item.icon className="h-3.5 w-3.5" />
+                <item.icon className="h-4 w-4" />
                 {item.label}
               </Link>
             ))}
           </nav>
 
           {/* Right side */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
             {/* Language */}
             <div className="relative" ref={langRef}>
               <button
                 onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1 rounded-lg px-2 py-1.5 text-[13px] text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+                className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <Globe className="h-3.5 w-3.5" />
                 <span className="hidden sm:inline">{localeFlags[lang]}</span>

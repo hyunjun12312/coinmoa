@@ -10,19 +10,19 @@ export default function SocialPage() {
   const { dictionary: t } = useDictionary();
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div>
-        <h1 className="text-lg font-semibold mb-0.5">{t.social.title}</h1>
-        <p className="text-[13px] text-[var(--text-secondary)]">{t.social.subtitle}</p>
+        <h1 className="text-xl font-semibold mb-1">{t.social.title}</h1>
+        <p className="text-sm text-[var(--text-secondary)]">{t.social.subtitle}</p>
       </div>
 
       {/* Influencer list */}
       <div className="card">
-        <h2 className="text-xs font-medium text-[var(--text-tertiary)] uppercase tracking-wider mb-3">{t.social.monitoring}</h2>
-        <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <h2 className="text-xs font-medium text-[var(--text-tertiary)] uppercase tracking-wider mb-4">{t.social.monitoring}</h2>
+        <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {CRYPTO_INFLUENCERS.slice(0, 6).map((inf) => (
-            <div key={inf.handle} className="flex items-center gap-2.5 rounded-lg bg-[var(--bg-secondary)] px-3 py-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--accent-blue)]/10 text-[var(--accent-blue)] text-xs font-semibold shrink-0">
+            <div key={inf.handle} className="flex items-center gap-3 rounded-lg bg-[var(--bg-secondary)] px-4 py-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent-blue)]/10 text-[var(--accent-blue)] text-sm font-semibold shrink-0">
                 {inf.name.charAt(0)}
               </div>
               <div className="min-w-0">

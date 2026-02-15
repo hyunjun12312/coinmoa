@@ -54,7 +54,7 @@ export default function CoinTable() {
   const SortHeader = ({ label, sortKeyName }: { label: string; sortKeyName: SortKey }) => (
     <th
       onClick={() => handleSort(sortKeyName)}
-      className="cursor-pointer px-3 py-2.5 text-[11px] font-medium text-[var(--text-tertiary)] uppercase tracking-wider hover:text-[var(--text-secondary)] transition-colors select-none"
+      className="cursor-pointer px-4 py-3 text-xs font-medium text-[var(--text-tertiary)] uppercase tracking-wider hover:text-[var(--text-secondary)] transition-colors select-none"
     >
       <div className="flex items-center gap-1">
         {label}
@@ -78,10 +78,10 @@ export default function CoinTable() {
   return (
     <div className="card overflow-hidden !p-0">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border-color)]">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border-color)]">
         <div>
-          <h2 className="text-sm font-semibold">{t.dashboard.realTimePrice}</h2>
-          <p className="text-[11px] text-[var(--text-tertiary)]">{t.dashboard.top100}</p>
+          <h2 className="text-base font-semibold">{t.dashboard.realTimePrice}</h2>
+          <p className="text-xs text-[var(--text-tertiary)] mt-0.5">{t.dashboard.top100}</p>
         </div>
         <div className="flex items-center gap-2">
           <span className="text-[10px] text-[var(--text-tertiary)] tabular-nums">
@@ -102,12 +102,12 @@ export default function CoinTable() {
           <thead>
             <tr className="border-b border-[var(--border-color)]">
               <SortHeader label={t.common.rank} sortKeyName="market_cap_rank" />
-              <th className="px-3 py-2.5 text-left text-[11px] font-medium text-[var(--text-tertiary)] uppercase tracking-wider">{t.common.coin}</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-[var(--text-tertiary)] uppercase tracking-wider">{t.common.coin}</th>
               <SortHeader label={t.common.price} sortKeyName="current_price" />
               <SortHeader label={t.common.change24h} sortKeyName="price_change_percentage_24h" />
               <SortHeader label={t.common.marketCap} sortKeyName="market_cap" />
               <SortHeader label={t.common.volume24h} sortKeyName="total_volume" />
-              <th className="px-3 py-2.5 text-[11px] font-medium text-[var(--text-tertiary)] uppercase tracking-wider">{t.common.chart7d}</th>
+              <th className="px-4 py-3 text-xs font-medium text-[var(--text-tertiary)] uppercase tracking-wider">{t.common.chart7d}</th>
             </tr>
           </thead>
           <tbody>
@@ -116,27 +116,27 @@ export default function CoinTable() {
                 key={coin.id}
                 className="border-b border-[var(--border-color)]/40 hover:bg-[var(--bg-card-hover)] transition-colors"
               >
-                <td className="px-3 py-2.5 text-xs text-[var(--text-tertiary)] tabular-nums">{coin.market_cap_rank}</td>
-                <td className="px-3 py-2.5">
-                  <Link href={`/${lang}/coin/${coin.id}`} className="flex items-center gap-2 group">
-                    <img src={coin.image} alt={coin.name} className="h-6 w-6 rounded-full" />
-                    <span className="text-[13px] font-medium group-hover:text-[var(--accent-blue)] transition-colors">
+                <td className="px-4 py-3.5 text-xs text-[var(--text-tertiary)] tabular-nums">{coin.market_cap_rank}</td>
+                <td className="px-4 py-3.5">
+                  <Link href={`/${lang}/coin/${coin.id}`} className="flex items-center gap-3 group">
+                    <img src={coin.image} alt={coin.name} className="h-7 w-7 rounded-full" />
+                    <span className="text-sm font-medium group-hover:text-[var(--accent-blue)] transition-colors">
                       {coin.name}
                     </span>
-                    <span className="text-[11px] text-[var(--text-tertiary)] uppercase">{coin.symbol}</span>
+                    <span className="text-xs text-[var(--text-tertiary)] uppercase">{coin.symbol}</span>
                   </Link>
                 </td>
-                <td className="px-3 py-2.5 text-[13px] font-mono tabular-nums">{formatPrice(coin.current_price)}</td>
-                <td className="px-3 py-2.5">
-                  <span className={`text-[13px] font-medium tabular-nums ${
+                <td className="px-4 py-3.5 text-sm font-mono tabular-nums">{formatPrice(coin.current_price)}</td>
+                <td className="px-4 py-3.5">
+                  <span className={`text-sm font-medium tabular-nums ${
                     coin.price_change_percentage_24h >= 0 ? 'price-up' : 'price-down'
                   }`}>
                     {formatPercent(coin.price_change_percentage_24h || 0)}
                   </span>
                 </td>
-                <td className="px-3 py-2.5 text-[13px] text-[var(--text-secondary)] tabular-nums">{formatMarketCap(coin.market_cap)}</td>
-                <td className="px-3 py-2.5 text-[13px] text-[var(--text-secondary)] tabular-nums">{formatMarketCap(coin.total_volume)}</td>
-                <td className="px-3 py-2.5">
+                <td className="px-4 py-3.5 text-sm text-[var(--text-secondary)] tabular-nums">{formatMarketCap(coin.market_cap)}</td>
+                <td className="px-4 py-3.5 text-sm text-[var(--text-secondary)] tabular-nums">{formatMarketCap(coin.total_volume)}</td>
+                <td className="px-4 py-3.5">
                   <MiniChart
                     data={coin.sparkline_in_7d?.price || []}
                     isPositive={(coin.price_change_percentage_7d_in_currency || 0) >= 0}

@@ -57,9 +57,9 @@ export default function SocialFeed({ limit = 30 }: { limit?: number }) {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <h2 className="text-sm font-semibold">{t.social.feedTitle}</h2>
+          <h2 className="text-base font-semibold">{t.social.feedTitle}</h2>
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--accent-green)] live-dot" />
         </div>
         <button onClick={fetchSocial} className="text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors">
@@ -68,7 +68,7 @@ export default function SocialFeed({ limit = 30 }: { limit?: number }) {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-1.5 mb-3">
+      <div className="flex flex-wrap gap-2 mb-4">
         {['all', 'twitter', 'reddit'].map(p => (
           <button
             key={p}
@@ -101,7 +101,7 @@ export default function SocialFeed({ limit = 30 }: { limit?: number }) {
       </div>
 
       {/* Posts */}
-      <div className="space-y-1.5">
+      <div className="space-y-1">
         {filtered.slice(0, limit).map((post) => {
           const pColor = platformColors[post.platform] || '#888';
           return (
@@ -110,25 +110,25 @@ export default function SocialFeed({ limit = 30 }: { limit?: number }) {
               href={post.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block rounded-lg px-3 py-3 transition-colors hover:bg-[var(--bg-card)] group"
+              className="block rounded-lg px-4 py-4 transition-colors hover:bg-[var(--bg-card)] group"
             >
-              <div className="flex gap-3">
+              <div className="flex gap-3.5">
                 <div
-                  className="flex h-8 w-8 items-center justify-center rounded-full text-white text-xs font-semibold shrink-0"
+                  className="flex h-10 w-10 items-center justify-center rounded-full text-white text-sm font-semibold shrink-0"
                   style={{ background: pColor }}
                 >
                   {post.author?.charAt(0).toUpperCase() || '?'}
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5 mb-0.5">
-                    <span className="text-[13px] font-medium">{post.author}</span>
-                    {post.verified && <CheckCircle2 className="h-3 w-3 text-[var(--accent-blue)]" />}
-                    <span className="text-[11px] text-[var(--text-tertiary)]">{post.authorHandle}</span>
-                    <span className="text-[10px] text-[var(--text-tertiary)]">· {timeAgo(post.publishedAt)}</span>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-sm font-medium">{post.author}</span>
+                    {post.verified && <CheckCircle2 className="h-3.5 w-3.5 text-[var(--accent-blue)]" />}
+                    <span className="text-xs text-[var(--text-tertiary)]">{post.authorHandle}</span>
+                    <span className="text-[11px] text-[var(--text-tertiary)]">· {timeAgo(post.publishedAt)}</span>
                   </div>
 
-                  <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed line-clamp-2 mb-1.5">
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-2 mb-2">
                     {post.content}
                   </p>
 
