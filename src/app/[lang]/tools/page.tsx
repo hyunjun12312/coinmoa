@@ -10,10 +10,8 @@ export default function ToolsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold mb-1">{t.tools.title}</h1>
-        <p className="text-sm text-[var(--text-secondary)]">
-          {t.tools.subtitle}
-        </p>
+        <h1 className="text-lg font-semibold mb-0.5">{t.tools.title}</h1>
+        <p className="text-[13px] text-[var(--text-secondary)]">{t.tools.subtitle}</p>
       </div>
 
       <AdBanner slot="tools-top" className="min-h-[90px]" />

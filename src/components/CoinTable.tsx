@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
-import { TrendingUp, TrendingDown, ArrowUpDown, RefreshCw } from 'lucide-react';
+import { ArrowUpDown, RefreshCw } from 'lucide-react';
 import { formatPrice, formatMarketCap, formatPercent } from '@/lib/api';
 import type { CoinData } from '@/types';
 import { useDictionary } from '@/i18n/DictionaryProvider';
@@ -36,17 +36,13 @@ export default function CoinTable() {
 
   useEffect(() => {
     fetchCoins();
-    const interval = setInterval(fetchCoins, 30000); // 30초마다 갱신
+    const interval = setInterval(fetchCoins, 30000);
     return () => clearInterval(interval);
   }, [fetchCoins]);
 
   const handleSort = (key: SortKey) => {
-    if (sortKey === key) {
-      setSortAsc(!sortAsc);
-    } else {
-      setSortKey(key);
-      setSortAsc(key === 'market_cap_rank');
-    }
+    if (sortKey === key) setSortAsc(!sortAsc);
+    else { setSortKey(key); setSortAsc(key === 'market_cap_rank'); }
   };
 
   const sorted = [...coins].sort((a, b) => {
@@ -58,21 +54,21 @@ export default function CoinTable() {
   const SortHeader = ({ label, sortKeyName }: { label: string; sortKeyName: SortKey }) => (
     <th
       onClick={() => handleSort(sortKeyName)}
-      className="cursor-pointer px-3 py-3 text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition select-none"
+      className="cursor-pointer px-3 py-2.5 text-[11px] font-medium text-[var(--text-tertiary)] uppercase tracking-wider hover:text-[var(--text-secondary)] transition-colors select-none"
     >
       <div className="flex items-center gap-1">
         {label}
-        <ArrowUpDown className="h-3 w-3 opacity-40" />
+        <ArrowUpDown className={`h-2.5 w-2.5 ${sortKey === sortKeyName ? 'opacity-80' : 'opacity-30'}`} />
       </div>
     </th>
   );
 
   if (loading) {
     return (
-      <div className="card">
-        <div className="animate-pulse space-y-3">
+      <div className="card !p-0 overflow-hidden">
+        <div className="p-4 space-y-2">
           {[...Array(10)].map((_, i) => (
-            <div key={i} className="h-12 bg-[var(--bg-secondary)] rounded-lg" />
+            <div key={i} className="h-10 bg-[var(--bg-secondary)] rounded animate-pulse" />
           ))}
         </div>
       </div>
@@ -80,23 +76,22 @@ export default function CoinTable() {
   }
 
   return (
-    <div className="card overflow-hidden p-0">
+    <div className="card overflow-hidden !p-0">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border-color)]">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border-color)]">
         <div>
-          <h2 className="text-lg font-bold">{t.dashboard.realTimePrice}</h2>
-          <p className="text-xs text-[var(--text-secondary)]">{t.dashboard.top100}</p>
+          <h2 className="text-sm font-semibold">{t.dashboard.realTimePrice}</h2>
+          <p className="text-[11px] text-[var(--text-tertiary)]">{t.dashboard.top100}</p>
         </div>
-        <div className="flex items-center gap-3">
-          <span className="text-[10px] text-[var(--text-secondary)]">
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] text-[var(--text-tertiary)] tabular-nums">
             {lastUpdate.toLocaleTimeString()}
           </span>
           <button
             onClick={fetchCoins}
-            className="flex items-center gap-1 rounded-lg bg-[var(--bg-secondary)] px-3 py-1.5 text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition"
+            className="flex items-center gap-1 rounded-md px-2 py-1 text-[11px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors"
           >
             <RefreshCw className="h-3 w-3" />
-            {t.common.refresh}
           </button>
         </div>
       </div>
@@ -104,50 +99,44 @@ export default function CoinTable() {
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead className="bg-[var(--bg-secondary)]">
-            <tr>
+          <thead>
+            <tr className="border-b border-[var(--border-color)]">
               <SortHeader label={t.common.rank} sortKeyName="market_cap_rank" />
-              <th className="px-3 py-3 text-left text-xs font-medium text-[var(--text-secondary)]">{t.common.coin}</th>
+              <th className="px-3 py-2.5 text-left text-[11px] font-medium text-[var(--text-tertiary)] uppercase tracking-wider">{t.common.coin}</th>
               <SortHeader label={t.common.price} sortKeyName="current_price" />
               <SortHeader label={t.common.change24h} sortKeyName="price_change_percentage_24h" />
               <SortHeader label={t.common.marketCap} sortKeyName="market_cap" />
               <SortHeader label={t.common.volume24h} sortKeyName="total_volume" />
-              <th className="px-3 py-3 text-xs font-medium text-[var(--text-secondary)]">{t.common.chart7d}</th>
+              <th className="px-3 py-2.5 text-[11px] font-medium text-[var(--text-tertiary)] uppercase tracking-wider">{t.common.chart7d}</th>
             </tr>
           </thead>
           <tbody>
             {sorted.map((coin) => (
               <tr
                 key={coin.id}
-                className="border-b border-[var(--border-color)]/50 hover:bg-[var(--bg-card-hover)] transition"
+                className="border-b border-[var(--border-color)]/40 hover:bg-[var(--bg-card-hover)] transition-colors"
               >
-                <td className="px-3 py-3 text-sm text-[var(--text-secondary)]">{coin.market_cap_rank}</td>
-                <td className="px-3 py-3">
+                <td className="px-3 py-2.5 text-xs text-[var(--text-tertiary)] tabular-nums">{coin.market_cap_rank}</td>
+                <td className="px-3 py-2.5">
                   <Link href={`/${lang}/coin/${coin.id}`} className="flex items-center gap-2 group">
-                    <img src={coin.image} alt={coin.name} className="h-7 w-7 rounded-full" />
-                    <div>
-                      <span className="text-sm font-medium group-hover:text-[var(--accent-blue)] transition">
-                        {coin.name}
-                      </span>
-                      <span className="ml-2 text-xs text-[var(--text-secondary)] uppercase">{coin.symbol}</span>
-                    </div>
+                    <img src={coin.image} alt={coin.name} className="h-6 w-6 rounded-full" />
+                    <span className="text-[13px] font-medium group-hover:text-[var(--accent-blue)] transition-colors">
+                      {coin.name}
+                    </span>
+                    <span className="text-[11px] text-[var(--text-tertiary)] uppercase">{coin.symbol}</span>
                   </Link>
                 </td>
-                <td className="px-3 py-3 text-sm font-mono">{formatPrice(coin.current_price)}</td>
-                <td className="px-3 py-3">
-                  <span className={`flex items-center gap-1 text-sm font-medium ${
+                <td className="px-3 py-2.5 text-[13px] font-mono tabular-nums">{formatPrice(coin.current_price)}</td>
+                <td className="px-3 py-2.5">
+                  <span className={`text-[13px] font-medium tabular-nums ${
                     coin.price_change_percentage_24h >= 0 ? 'price-up' : 'price-down'
                   }`}>
-                    {coin.price_change_percentage_24h >= 0 ?
-                      <TrendingUp className="h-3 w-3" /> :
-                      <TrendingDown className="h-3 w-3" />
-                    }
                     {formatPercent(coin.price_change_percentage_24h || 0)}
                   </span>
                 </td>
-                <td className="px-3 py-3 text-sm text-[var(--text-secondary)]">{formatMarketCap(coin.market_cap)}</td>
-                <td className="px-3 py-3 text-sm text-[var(--text-secondary)]">{formatMarketCap(coin.total_volume)}</td>
-                <td className="px-3 py-3">
+                <td className="px-3 py-2.5 text-[13px] text-[var(--text-secondary)] tabular-nums">{formatMarketCap(coin.market_cap)}</td>
+                <td className="px-3 py-2.5 text-[13px] text-[var(--text-secondary)] tabular-nums">{formatMarketCap(coin.total_volume)}</td>
+                <td className="px-3 py-2.5">
                   <MiniChart
                     data={coin.sparkline_in_7d?.price || []}
                     isPositive={(coin.price_change_percentage_7d_in_currency || 0) >= 0}
@@ -163,30 +152,31 @@ export default function CoinTable() {
 }
 
 function MiniChart({ data, isPositive }: { data: number[]; isPositive: boolean }) {
-  if (data.length === 0) return <div className="h-8 w-20" />;
-  
-  // 간단한 SVG 스파크라인
-  const sampled = data.filter((_, i) => i % Math.max(1, Math.floor(data.length / 30)) === 0);
+  if (data.length === 0) return <div className="h-7 w-16" />;
+
+  const sampled = data.filter((_, i) => i % Math.max(1, Math.floor(data.length / 24)) === 0);
   const min = Math.min(...sampled);
   const max = Math.max(...sampled);
   const range = max - min || 1;
-  const width = 80;
-  const height = 32;
-  
+  const width = 64;
+  const height = 28;
+
   const points = sampled
     .map((v, i) => {
       const x = (i / (sampled.length - 1)) * width;
-      const y = height - ((v - min) / range) * height;
+      const y = height - ((v - min) / range) * (height - 4) - 2;
       return `${x},${y}`;
     })
     .join(' ');
 
   return (
-    <svg width={width} height={height} className="overflow-visible">
+    <svg width={width} height={height} className="overflow-visible opacity-70">
       <polyline
         fill="none"
         stroke={isPositive ? 'var(--accent-green)' : 'var(--accent-red)'}
-        strokeWidth="1.5"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         points={points}
       />
     </svg>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { ArrowUpDown, RefreshCw, TrendingUp, TrendingDown } from 'lucide-react';
+import { ArrowUpDown, RefreshCw } from 'lucide-react';
 import { useDictionary } from '@/i18n/DictionaryProvider';
 
 interface KimchiItem {
@@ -43,7 +43,7 @@ export default function KimchiPremiumTable() {
 
   useEffect(() => {
     fetchData();
-    const interval = setInterval(fetchData, 30000); // 30초마다 갱신
+    const interval = setInterval(fetchData, 30000);
     return () => clearInterval(interval);
   }, [fetchData]);
 
@@ -57,10 +57,10 @@ export default function KimchiPremiumTable() {
 
   if (loading) {
     return (
-      <div className="card">
-        <div className="animate-pulse space-y-3">
+      <div className="card !p-0 overflow-hidden">
+        <div className="p-4 space-y-2">
           {[...Array(8)].map((_, i) => (
-            <div key={i} className="h-12 bg-[var(--bg-secondary)] rounded-lg" />
+            <div key={i} className="h-10 bg-[var(--bg-secondary)] rounded animate-pulse" />
           ))}
         </div>
       </div>
@@ -68,35 +68,34 @@ export default function KimchiPremiumTable() {
   }
 
   return (
-    <div className="card overflow-hidden p-0">
+    <div className="card overflow-hidden !p-0">
       {/* Header */}
-      <div className="px-5 py-4 border-b border-[var(--border-color)]">
+      <div className="px-4 py-3 border-b border-[var(--border-color)]">
         <div className="flex items-center justify-between mb-3">
           <div>
-          <h2 className="text-lg font-bold">🇰🇷 {t.kimchi.monitor}</h2>
-            <p className="text-xs text-[var(--text-secondary)]">{t.kimchi.subtitle}</p>
+            <h2 className="text-sm font-semibold">{t.kimchi.monitor}</h2>
+            <p className="text-[11px] text-[var(--text-tertiary)]">{t.kimchi.subtitle}</p>
           </div>
-          <button onClick={fetchData} className="flex items-center gap-1 rounded-lg bg-[var(--bg-secondary)] px-3 py-1.5 text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
+          <button onClick={fetchData} className="flex items-center rounded-md px-2 py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors">
             <RefreshCw className="h-3 w-3" />
-            {t.common.refresh}
           </button>
         </div>
-        
-        {/* Summary Cards */}
-        <div className="grid grid-cols-3 gap-3">
-          <div className="rounded-lg bg-[var(--bg-secondary)] p-3 text-center">
-            <span className="text-[10px] text-[var(--text-secondary)]">{t.kimchi.avgPremium}</span>
-            <div className={`text-lg font-bold ${parseFloat(avgPremium) >= 0 ? 'price-up' : 'price-down'}`}>
+
+        {/* Summary */}
+        <div className="grid grid-cols-3 gap-2">
+          <div className="rounded-lg bg-[var(--bg-secondary)] px-3 py-2 text-center">
+            <span className="text-[10px] text-[var(--text-tertiary)] block">{t.kimchi.avgPremium}</span>
+            <span className={`text-sm font-semibold tabular-nums ${parseFloat(avgPremium) >= 0 ? 'price-up' : 'price-down'}`}>
               {avgPremium}%
-            </div>
+            </span>
           </div>
-          <div className="rounded-lg bg-[var(--bg-secondary)] p-3 text-center">
-            <span className="text-[10px] text-[var(--text-secondary)]">{t.kimchi.exchangeRate}</span>
-            <div className="text-lg font-bold">{exchangeRate.toLocaleString()}</div>
+          <div className="rounded-lg bg-[var(--bg-secondary)] px-3 py-2 text-center">
+            <span className="text-[10px] text-[var(--text-tertiary)] block">{t.kimchi.exchangeRate}</span>
+            <span className="text-sm font-semibold tabular-nums">{exchangeRate.toLocaleString()}</span>
           </div>
-          <div className="rounded-lg bg-[var(--bg-secondary)] p-3 text-center">
-            <span className="text-[10px] text-[var(--text-secondary)]">{t.kimchi.monitoring}</span>
-            <div className="text-lg font-bold">{data.length}개</div>
+          <div className="rounded-lg bg-[var(--bg-secondary)] px-3 py-2 text-center">
+            <span className="text-[10px] text-[var(--text-tertiary)] block">{t.kimchi.monitoring}</span>
+            <span className="text-sm font-semibold tabular-nums">{data.length}</span>
           </div>
         </div>
       </div>
@@ -104,48 +103,39 @@ export default function KimchiPremiumTable() {
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead className="bg-[var(--bg-secondary)]">
-            <tr>
-              <th className="px-4 py-3 text-left text-xs font-medium text-[var(--text-secondary)]">{t.common.coin}</th>
-              <th className="px-4 py-3 text-right text-xs font-medium text-[var(--text-secondary)]">{t.kimchi.upbitKRW}</th>
-              <th className="px-4 py-3 text-right text-xs font-medium text-[var(--text-secondary)]">{t.kimchi.binanceKRW}</th>
+          <thead>
+            <tr className="border-b border-[var(--border-color)]">
+              <th className="px-4 py-2.5 text-left text-[11px] font-medium text-[var(--text-tertiary)] uppercase tracking-wider">{t.common.coin}</th>
+              <th className="px-4 py-2.5 text-right text-[11px] font-medium text-[var(--text-tertiary)] uppercase tracking-wider">{t.kimchi.upbitKRW}</th>
+              <th className="px-4 py-2.5 text-right text-[11px] font-medium text-[var(--text-tertiary)] uppercase tracking-wider">{t.kimchi.binanceKRW}</th>
               <th
                 onClick={() => setSortAsc(!sortAsc)}
-                className="px-4 py-3 text-right text-xs font-medium text-[var(--text-secondary)] cursor-pointer hover:text-[var(--text-primary)] transition"
+                className="px-4 py-2.5 text-right text-[11px] font-medium text-[var(--text-tertiary)] uppercase tracking-wider cursor-pointer hover:text-[var(--text-secondary)] transition-colors"
               >
                 <div className="flex items-center justify-end gap-1">
                   {t.kimchi.premium}
-                  <ArrowUpDown className="h-3 w-3" />
+                  <ArrowUpDown className="h-2.5 w-2.5" />
                 </div>
               </th>
             </tr>
           </thead>
           <tbody>
             {sorted.map((item) => (
-              <tr
-                key={item.symbol}
-                className="border-b border-[var(--border-color)]/50 hover:bg-[var(--bg-card-hover)] transition"
-              >
-                <td className="px-4 py-3">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold">{item.symbol}</span>
-                  </div>
+              <tr key={item.symbol} className="border-b border-[var(--border-color)]/40 hover:bg-[var(--bg-card-hover)] transition-colors">
+                <td className="px-4 py-2.5">
+                  <span className="text-[13px] font-medium">{item.symbol}</span>
                 </td>
-                <td className="px-4 py-3 text-right text-sm font-mono">
+                <td className="px-4 py-2.5 text-right text-[13px] font-mono tabular-nums">
                   {item.upbitPrice.toLocaleString('ko-KR')}원
                 </td>
-                <td className="px-4 py-3 text-right text-sm font-mono text-[var(--text-secondary)]">
+                <td className="px-4 py-2.5 text-right text-[13px] font-mono tabular-nums text-[var(--text-secondary)]">
                   {item.binancePriceKRW.toLocaleString('ko-KR')}원
-                  <span className="block text-[10px]">(${item.binancePrice.toLocaleString('en-US', { maximumFractionDigits: 4 })})</span>
+                  <span className="block text-[10px] text-[var(--text-tertiary)]">(${item.binancePrice.toLocaleString('en-US', { maximumFractionDigits: 4 })})</span>
                 </td>
-                <td className="px-4 py-3 text-right">
-                  <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-sm font-bold ${
-                    item.premiumPercent >= 0 ? 'bg-[var(--accent-green)]/10 price-up' : 'bg-[var(--accent-red)]/10 price-down'
+                <td className="px-4 py-2.5 text-right">
+                  <span className={`text-[13px] font-medium tabular-nums ${
+                    item.premiumPercent >= 0 ? 'price-up' : 'price-down'
                   }`}>
-                    {item.premiumPercent >= 0 ?
-                      <TrendingUp className="h-3 w-3" /> :
-                      <TrendingDown className="h-3 w-3" />
-                    }
                     {item.premiumPercent >= 0 ? '+' : ''}{item.premiumPercent}%
                   </span>
                 </td>
@@ -154,10 +144,10 @@ export default function KimchiPremiumTable() {
           </tbody>
         </table>
       </div>
-      
+
       {updatedAt && (
-        <div className="px-5 py-3 text-[10px] text-[var(--text-secondary)] text-right border-t border-[var(--border-color)]">
-          마지막 업데이트: {new Date(updatedAt).toLocaleString('ko-KR')}
+        <div className="px-4 py-2 text-[10px] text-[var(--text-tertiary)] text-right border-t border-[var(--border-color)]">
+          {new Date(updatedAt).toLocaleString('ko-KR')}
         </div>
       )}
     </div>

@@ -49,7 +49,7 @@ export default async function LangLayout({
     <div dir={dir} lang={locale}>
       <DictionaryProvider dictionary={dictionary} lang={locale}>
         <Header />
-        <main className="mx-auto max-w-7xl px-4 py-6">
+        <main className="mx-auto max-w-7xl px-4 sm:px-6 py-5">
           {children}
         </main>
         <Footer />

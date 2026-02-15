@@ -1,18 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --bg-card: #1a1a2e;
-  --bg-card-hover: #222240;
-  --border-color: #2a2a4a;
-  --text-primary: #e8e8f0;
-  --text-secondary: #8888aa;
-  --accent-green: #00d4aa;
-  --accent-red: #ff4757;
-  --accent-blue: #4a9eff;
-  --accent-yellow: #ffd700;
-  --accent-purple: #a855f7;
+  /* Soft dark palette – easy on the eyes */
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-card: #1c2128;
+  --bg-card-hover: #21262d;
+  --border-color: rgba(139, 148, 158, 0.12);
+  --text-primary: #e6edf3;
+  --text-secondary: #7d8590;
+  --text-tertiary: #484f58;
+  --accent-green: #3fb950;
+  --accent-red: #f85149;
+  --accent-blue: #58a6ff;
+  --accent-yellow: #d29922;
+  --accent-purple: #bc8cff;
+
+  /* Subtle, glassy surface */
+  --glass: rgba(22, 27, 34, 0.75);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.24);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.32);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.4);
+  --radius: 10px;
 }
 
 @theme inline {
@@ -31,62 +40,118 @@
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
 }
 
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 3px; }
+/* Sleek thin scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--text-tertiary); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
 
-@keyframes pulse-green {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+/* Animations – subtle and smooth */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
 }
 @keyframes slide-up {
-  from { transform: translateY(10px); opacity: 0; }
+  from { transform: translateY(8px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
 
-.animate-slide-up { animation: slide-up 0.3s ease-out; }
-.animate-fade-in { animation: fade-in 0.5s ease-out; }
-.live-dot { animation: pulse-green 2s infinite; }
+.animate-slide-up { animation: slide-up 0.25s cubic-bezier(0.33, 1, 0.68, 1); }
+.animate-fade-in { animation: fade-in 0.4s ease-out; }
+.live-dot { animation: pulse-dot 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
 
+/* Card – clean glass surface */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: var(--radius);
   padding: 1.25rem;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .card:hover {
   background: var(--bg-card-hover);
-  border-color: var(--accent-blue);
+  border-color: rgba(139, 148, 158, 0.2);
+  box-shadow: var(--shadow-sm);
 }
 
+/* Price colors – slightly muted for comfort */
 .price-up { color: var(--accent-green); }
 .price-down { color: var(--accent-red); }
 
+/* Gradient text – softer */
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+/* Ad placeholder – minimal */
 .ad-slot {
   background: var(--bg-secondary);
-  border: 1px dashed var(--border-color);
-  border-radius: 8px;
+  border: 1px dashed rgba(139, 148, 158, 0.15);
+  border-radius: var(--radius);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
-  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  font-size: 0.7rem;
   min-height: 90px;
 }
+
+/* Skeleton shimmer */
+.animate-pulse {
+  background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--bg-card) 50%, var(--bg-secondary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+/* Pill buttons – minimal */
+.pill {
+  border-radius: 9999px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+.pill-active {
+  background: var(--accent-blue);
+  color: white;
+}
+.pill-inactive {
+  background: transparent;
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+.pill-inactive:hover {
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+}
+
+/* Focus ring for accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(88, 166, 255, 0.25);
+}
+

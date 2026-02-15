@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { Activity, Globe, TrendingUp, TrendingDown, Gauge } from 'lucide-react';
 import { formatMarketCap, formatPercent } from '@/lib/api';
 import { useDictionary } from '@/i18n/DictionaryProvider';
 
@@ -32,10 +31,7 @@ export default function MarketOverview() {
   const fetchData = useCallback(async () => {
     try {
       const res = await fetch('/api/overview');
-      if (res.ok) {
-        const d = await res.json();
-        setData(d);
-      }
+      if (res.ok) setData(await res.json());
     } catch (e) {
       console.error('Failed to fetch overview', e);
     } finally {
@@ -51,9 +47,9 @@ export default function MarketOverview() {
 
   if (loading) {
     return (
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid gap-3 grid-cols-2 md:grid-cols-4">
         {[...Array(4)].map((_, i) => (
-          <div key={i} className="card animate-pulse h-24" />
+          <div key={i} className="card animate-pulse h-[88px]" />
         ))}
       </div>
     );
@@ -61,101 +57,67 @@ export default function MarketOverview() {
 
   const fg = data?.fearGreed?.current;
   const fgValue = fg ? parseInt(fg.value) : 50;
-  const fgColor = fgValue <= 25 ? 'var(--accent-red)' : fgValue <= 45 ? '#ff8c00' : fgValue <= 55 ? 'var(--accent-yellow)' : fgValue <= 75 ? 'var(--accent-green)' : '#00ff88';
+  const fgColor = fgValue <= 25 ? 'var(--accent-red)' : fgValue <= 45 ? 'var(--accent-yellow)' : fgValue <= 55 ? 'var(--text-secondary)' : fgValue <= 75 ? 'var(--accent-green)' : 'var(--accent-green)';
   const fgLabel = fgValue <= 25 ? t.dashboard.extremeFear : fgValue <= 45 ? t.dashboard.fear : fgValue <= 55 ? t.dashboard.neutral : fgValue <= 75 ? t.dashboard.greed : t.dashboard.extremeGreed;
-  
+
   const global = data?.global;
   const marketCapChange = global?.marketCapChangePercentage24h || 0;
 
   return (
-    <div className="space-y-4">
-      {/* Stats Row */}
+    <div className="space-y-3">
       <div className="grid gap-3 grid-cols-2 md:grid-cols-4">
         {/* Fear & Greed */}
-        <div className="card text-center">
-          <div className="flex items-center justify-center gap-1 mb-2">
-            <Gauge className="h-4 w-4 text-[var(--text-secondary)]" />
-            <span className="text-xs text-[var(--text-secondary)]">{t.dashboard.fearGreedIndex}</span>
+        <div className="card !p-4">
+          <p className="text-[11px] text-[var(--text-secondary)] mb-1.5">{t.dashboard.fearGreedIndex}</p>
+          <div className="flex items-baseline gap-2">
+            <span className="text-2xl font-semibold tabular-nums" style={{ color: fgColor }}>{fgValue}</span>
+            <span className="text-[11px] font-medium" style={{ color: fgColor }}>{fgLabel}</span>
           </div>
-          <div className="text-3xl font-bold mb-1" style={{ color: fgColor }}>
-            {fgValue}
-          </div>
-          <span className="text-xs font-medium" style={{ color: fgColor }}>{fgLabel}</span>
-          {/* Mini gauge bar */}
-          <div className="mt-2 h-1.5 w-full rounded-full bg-[var(--bg-secondary)] overflow-hidden">
-            <div
-              className="h-full rounded-full transition-all duration-700"
-              style={{ width: `${fgValue}%`, background: `linear-gradient(90deg, var(--accent-red), var(--accent-yellow), var(--accent-green))` }}
-            />
+          <div className="mt-2 h-1 w-full rounded-full bg-[var(--bg-secondary)] overflow-hidden">
+            <div className="h-full rounded-full transition-all duration-700" style={{ width: `${fgValue}%`, background: fgColor }} />
           </div>
         </div>
 
         {/* Total Market Cap */}
-        <div className="card">
-          <div className="flex items-center gap-1 mb-2">
-            <Globe className="h-4 w-4 text-[var(--text-secondary)]" />
-            <span className="text-xs text-[var(--text-secondary)]">{t.dashboard.totalMarketCap}</span>
-          </div>
-          <div className="text-xl font-bold">{global ? formatMarketCap(global.totalMarketCap) : '-'}</div>
-          <span className={`text-xs font-medium ${marketCapChange >= 0 ? 'price-up' : 'price-down'}`}>
+        <div className="card !p-4">
+          <p className="text-[11px] text-[var(--text-secondary)] mb-1.5">{t.dashboard.totalMarketCap}</p>
+          <div className="text-lg font-semibold">{global ? formatMarketCap(global.totalMarketCap) : '-'}</div>
+          <span className={`text-[11px] font-medium ${marketCapChange >= 0 ? 'price-up' : 'price-down'}`}>
             {formatPercent(marketCapChange)}
           </span>
         </div>
 
         {/* BTC Dominance */}
-        <div className="card">
-          <div className="flex items-center gap-1 mb-2">
-            <Activity className="h-4 w-4 text-[var(--accent-yellow)]" />
-            <span className="text-xs text-[var(--text-secondary)]">{t.dashboard.btcDominance}</span>
-          </div>
-          <div className="text-xl font-bold">{global ? `${global.btcDominance.toFixed(1)}%` : '-'}</div>
-          <div className="mt-1 h-1.5 w-full rounded-full bg-[var(--bg-secondary)] overflow-hidden">
-            <div
-              className="h-full rounded-full bg-[var(--accent-yellow)]"
-              style={{ width: `${global?.btcDominance || 0}%` }}
-            />
+        <div className="card !p-4">
+          <p className="text-[11px] text-[var(--text-secondary)] mb-1.5">{t.dashboard.btcDominance}</p>
+          <div className="text-lg font-semibold">{global ? `${global.btcDominance.toFixed(1)}%` : '-'}</div>
+          <div className="mt-1.5 h-1 w-full rounded-full bg-[var(--bg-secondary)] overflow-hidden">
+            <div className="h-full rounded-full bg-[var(--accent-yellow)]/70" style={{ width: `${global?.btcDominance || 0}%` }} />
           </div>
         </div>
 
         {/* 24h Volume */}
-        <div className="card">
-          <div className="flex items-center gap-1 mb-2">
-            <TrendingUp className="h-4 w-4 text-[var(--accent-blue)]" />
-            <span className="text-xs text-[var(--text-secondary)]">{t.dashboard.volume24h}</span>
-          </div>
-          <div className="text-xl font-bold">{global ? formatMarketCap(global.totalVolume) : '-'}</div>
-          <span className="text-xs text-[var(--text-secondary)]">
+        <div className="card !p-4">
+          <p className="text-[11px] text-[var(--text-secondary)] mb-1.5">{t.dashboard.volume24h}</p>
+          <div className="text-lg font-semibold">{global ? formatMarketCap(global.totalVolume) : '-'}</div>
+          <span className="text-[11px] text-[var(--text-secondary)]">
             {global ? `${global.activeCryptos?.toLocaleString()} ${t.dashboard.activeCoins}` : '-'}
           </span>
         </div>
       </div>
 
-      {/* Trending Coins */}
+      {/* Trending */}
       {data?.trending && data.trending.length > 0 && (
-        <div className="card">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-lg">🔥</span>
-            <h3 className="text-sm font-bold">{t.dashboard.trendingCoins}</h3>
-          </div>
-          <div className="flex gap-3 overflow-x-auto pb-2">
-            {data.trending.map((coin, i) => (
-              <div
-                key={coin.id}
-                className="shrink-0 flex items-center gap-2 rounded-lg bg-[var(--bg-secondary)] p-2.5 min-w-[140px]"
-              >
-                <span className="text-xs text-[var(--text-secondary)] font-mono">#{i + 1}</span>
-                <img src={coin.thumb} alt={coin.name} className="h-6 w-6 rounded-full" />
-                <div>
-                  <span className="text-xs font-medium">{coin.symbol.toUpperCase()}</span>
-                  <div className={`text-[10px] font-medium ${
-                    coin.priceChangePercentage24h >= 0 ? 'price-up' : 'price-down'
-                  }`}>
-                    {formatPercent(coin.priceChangePercentage24h)}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1">
+          {data.trending.map((coin, i) => (
+            <div key={coin.id} className="shrink-0 flex items-center gap-2 rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] px-3 py-2">
+              <img src={coin.thumb} alt={coin.name} className="h-5 w-5 rounded-full" />
+              <span className="text-xs font-medium">{coin.symbol.toUpperCase()}</span>
+              <span className={`text-[11px] font-medium ${coin.priceChangePercentage24h >= 0 ? 'price-up' : 'price-down'}`}>
+                {formatPercent(coin.priceChangePercentage24h)}
+              </span>
+            </div>
+          ))}
         </div>
       )}
     </div>

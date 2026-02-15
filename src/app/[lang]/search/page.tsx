@@ -45,7 +45,7 @@ export default function SearchPage() {
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
-      <h1 className="text-2xl font-bold">{t.nav.search}</h1>
+      <h1 className="text-lg font-semibold">{t.nav.search}</h1>
 
       {/* Search Input */}
       <div className="flex gap-2">
@@ -63,7 +63,7 @@ export default function SearchPage() {
         <button
           onClick={search}
           disabled={loading}
-          className="rounded-xl bg-gradient-to-r from-[var(--accent-blue)] to-[var(--accent-purple)] px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-50"
+          className="rounded-xl bg-[var(--accent-blue)] px-6 py-3 text-[13px] font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
         >
           {loading ? '...' : t.nav.search}
         </button>

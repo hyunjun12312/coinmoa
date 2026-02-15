@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { Newspaper, ExternalLink, TrendingUp, TrendingDown, Minus, RefreshCw } from 'lucide-react';
+import { ExternalLink, RefreshCw } from 'lucide-react';
 import type { NewsItem } from '@/types';
 import { timeAgo } from '@/lib/api';
 import { useDictionary } from '@/i18n/DictionaryProvider';
@@ -28,7 +28,7 @@ export default function NewsFeed({ limit = 20 }: { limit?: number }) {
 
   useEffect(() => {
     fetchNews();
-    const interval = setInterval(fetchNews, 120000); // 2분마다 갱신
+    const interval = setInterval(fetchNews, 120000);
     return () => clearInterval(interval);
   }, [fetchNews]);
 
@@ -36,16 +36,10 @@ export default function NewsFeed({ limit = 20 }: { limit?: number }) {
     ? news
     : news.filter(n => n.categories?.some(c => c.toLowerCase().includes(filter)));
 
-  const sentimentIcon = (s?: string) => {
-    if (s === 'positive') return <TrendingUp className="h-3.5 w-3.5 text-[var(--accent-green)]" />;
-    if (s === 'negative') return <TrendingDown className="h-3.5 w-3.5 text-[var(--accent-red)]" />;
-    return <Minus className="h-3.5 w-3.5 text-[var(--text-secondary)]" />;
-  };
-
-  const sentimentBg = (s?: string) => {
-    if (s === 'positive') return 'border-l-[var(--accent-green)]';
-    if (s === 'negative') return 'border-l-[var(--accent-red)]';
-    return 'border-l-[var(--border-color)]';
+  const sentimentDot = (s?: string) => {
+    if (s === 'positive') return 'bg-[var(--accent-green)]';
+    if (s === 'negative') return 'bg-[var(--accent-red)]';
+    return 'bg-[var(--text-tertiary)]';
   };
 
   const filters = [
@@ -59,12 +53,9 @@ export default function NewsFeed({ limit = 20 }: { limit?: number }) {
 
   if (loading) {
     return (
-      <div className="space-y-3">
+      <div className="space-y-2">
         {[...Array(5)].map((_, i) => (
-          <div key={i} className="card animate-pulse">
-            <div className="h-5 w-3/4 bg-[var(--bg-secondary)] rounded mb-2" />
-            <div className="h-3 w-1/2 bg-[var(--bg-secondary)] rounded" />
-          </div>
+          <div key={i} className="h-16 bg-[var(--bg-card)] rounded-[var(--radius)] animate-pulse" />
         ))}
       </div>
     );
@@ -73,28 +64,23 @@ export default function NewsFeed({ limit = 20 }: { limit?: number }) {
   return (
     <div>
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <Newspaper className="h-5 w-5 text-[var(--accent-blue)]" />
-          <h2 className="text-lg font-bold">{t.news.realTimeNews}</h2>
-          <span className="inline-block h-2 w-2 rounded-full bg-[var(--accent-green)] live-dot" />
+          <h2 className="text-sm font-semibold">{t.news.realTimeNews}</h2>
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--accent-green)] live-dot" />
         </div>
-        <button onClick={fetchNews} className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
-          <RefreshCw className="h-4 w-4" />
+        <button onClick={fetchNews} className="text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors">
+          <RefreshCw className="h-3.5 w-3.5" />
         </button>
       </div>
 
       {/* Filters */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
+      <div className="flex gap-1.5 mb-3 overflow-x-auto pb-1">
         {filters.map(f => (
           <button
             key={f.id}
             onClick={() => setFilter(f.id)}
-            className={`shrink-0 rounded-full px-3 py-1 text-xs transition ${
-              filter === f.id
-                ? 'bg-[var(--accent-blue)] text-white'
-                : 'bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-            }`}
+            className={`pill ${filter === f.id ? 'pill-active' : 'pill-inactive'}`}
           >
             {f.label}
           </button>
@@ -102,46 +88,27 @@ export default function NewsFeed({ limit = 20 }: { limit?: number }) {
       </div>
 
       {/* News List */}
-      <div className="space-y-3">
+      <div className="space-y-1.5">
         {filtered.slice(0, limit).map((item) => (
           <a
             key={item.id}
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`card block border-l-4 ${sentimentBg(item.sentiment)} hover:border-l-[var(--accent-blue)] group`}
+            className="block rounded-lg px-3 py-2.5 transition-colors hover:bg-[var(--bg-card)] group"
           >
-            <div className="flex items-start gap-3">
-              {item.imageUrl && (
-                <img
-                  src={item.imageUrl}
-                  alt=""
-                  className="h-16 w-24 rounded-lg object-cover shrink-0 hidden sm:block"
-                />
-              )}
+            <div className="flex items-start gap-2.5">
+              <div className={`mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 ${sentimentDot(item.sentiment)}`} />
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  {sentimentIcon(item.sentiment)}
-                  <span className="text-[10px] text-[var(--accent-blue)] font-medium uppercase">{item.source}</span>
-                  <span className="text-[10px] text-[var(--text-secondary)]">{timeAgo(item.publishedAt)}</span>
-                </div>
-                <h3 className="text-sm font-medium leading-snug group-hover:text-[var(--accent-blue)] transition line-clamp-2">
+                <h3 className="text-[13px] font-medium leading-snug group-hover:text-[var(--accent-blue)] transition-colors line-clamp-2">
                   {item.title}
                 </h3>
-                <p className="mt-1 text-xs text-[var(--text-secondary)] line-clamp-1">
-                  {item.description}
-                </p>
-                {item.categories && item.categories.length > 0 && (
-                  <div className="flex gap-1 mt-2">
-                    {item.categories.slice(0, 3).map(cat => (
-                      <span key={cat} className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--bg-secondary)] text-[var(--text-secondary)]">
-                        {cat}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-[10px] text-[var(--accent-blue)]/70">{item.source}</span>
+                  <span className="text-[10px] text-[var(--text-tertiary)]">{timeAgo(item.publishedAt)}</span>
+                </div>
               </div>
-              <ExternalLink className="h-4 w-4 text-[var(--text-secondary)] shrink-0 opacity-0 group-hover:opacity-100 transition" />
+              <ExternalLink className="h-3 w-3 text-[var(--text-tertiary)] shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
           </a>
         ))}
