@@ -153,5 +153,35 @@
     "disclaimerFull": "This site is for informational purposes only, not investment advice. Cryptocurrency investments carry the risk of principal loss.",
     "copyright": "© 2026 CryptoPulse. Real-time crypto information platform.",
     "dataBy": "Data by CoinGecko, Upbit, Binance, CryptoCompare"
+  },
+  "pageSeo": {
+    "dashboard": {
+      "title": "Real-Time Crypto Dashboard",
+      "description": "Track live cryptocurrency prices, market cap, trading volume, and trends for Bitcoin, Ethereum, and 100+ coins."
+    },
+    "news": {
+      "title": "Crypto News",
+      "description": "Latest cryptocurrency news with real-time sentiment analysis from major media outlets worldwide."
+    },
+    "social": {
+      "title": "Crypto Social Feed",
+      "description": "Real-time posts from top crypto influencers, Reddit, and community discussions with auto-tagged keywords."
+    },
+    "kimchi": {
+      "title": "Kimchi Premium Monitor",
+      "description": "Real-time Kimchi Premium tracker comparing Upbit KRW and Binance USDT prices. Auto-refreshed every 30 seconds."
+    },
+    "tools": {
+      "title": "Crypto Investment Tools",
+      "description": "Free crypto calculators: profit/loss calculator, position size calculator, and cryptocurrency converter."
+    },
+    "search": {
+      "title": "Search Cryptocurrencies",
+      "description": "Search any cryptocurrency by name or symbol. Get real-time prices, market cap, and detailed coin information."
+    },
+    "coinDetail": {
+      "title": "{name} Price & Chart",
+      "description": "Live {name} ({symbol}) price, market cap, volume, price charts, and detailed market data on CryptoPulse."
+    }
   }
 }

@@ -1,4 +1,28 @@
 import { InfluencerProfile } from '@/types';
+import type { Locale } from '@/i18n/config';
+
+// ======== SEO Constants ========
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://cryptopulse.site';
+export const SITE_NAME = 'CryptoPulse';
+
+// OpenGraph locale mapping for international SEO
+export const OG_LOCALE_MAP: Record<Locale, string> = {
+  en: 'en_US',
+  ko: 'ko_KR',
+  ja: 'ja_JP',
+  zh: 'zh_CN',
+  es: 'es_ES',
+  fr: 'fr_FR',
+  de: 'de_DE',
+  pt: 'pt_BR',
+  ru: 'ru_RU',
+  ar: 'ar_SA',
+  vi: 'vi_VN',
+  th: 'th_TH',
+  tr: 'tr_TR',
+  hi: 'hi_IN',
+  id: 'id_ID',
+};
 
 // 크립토 주요 인플루언서 목록
 export const CRYPTO_INFLUENCERS: InfluencerProfile[] = [

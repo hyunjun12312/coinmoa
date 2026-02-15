@@ -4,16 +4,46 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
+    // Try CryptoCompare first
+    const articles = await fetchCryptoCompareNews();
+    if (articles.length > 0) {
+      return NextResponse.json(articles);
+    }
+
+    // Fallback: CoinGecko trending + status updates
+    const fallback = await fetchCoinGeckoNews();
+    if (fallback.length > 0) {
+      return NextResponse.json(fallback);
+    }
+
+    // Last fallback: return empty with 200
+    return NextResponse.json([]);
+  } catch (error) {
+    console.error('News API error:', error);
+    return NextResponse.json([]);
+  }
+}
+
+async function fetchCryptoCompareNews() {
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+
     const res = await fetch(
       'https://min-api.cryptocompare.com/data/v2/news/?lang=EN&sortOrder=latest',
-      { next: { revalidate: 120 } }
+      {
+        signal: controller.signal,
+        headers: { 'Accept': 'application/json' },
+        next: { revalidate: 120 },
+      }
     );
-    
-    if (!res.ok) throw new Error('CryptoCompare API error');
-    
+    clearTimeout(timeout);
+
+    if (!res.ok) return [];
+
     const data = await res.json();
-    
-    const articles = (data.Data || []).slice(0, 50).map((item: {
+
+    return (data.Data || []).slice(0, 50).map((item: {
       id: string;
       title: string;
       body: string;
@@ -33,10 +63,49 @@ export async function GET() {
       categories: item.categories?.split('|') || [],
       sentiment: analyzeSentiment(item.title + ' ' + item.body),
     }));
-    
-    return NextResponse.json(articles);
-  } catch (error) {
-    return NextResponse.json({ error: 'Failed to fetch news' }, { status: 500 });
+  } catch {
+    return [];
+  }
+}
+
+async function fetchCoinGeckoNews() {
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+
+    // Use CoinGecko status updates as news fallback
+    const res = await fetch(
+      'https://api.coingecko.com/api/v3/status_updates?per_page=50',
+      {
+        signal: controller.signal,
+        headers: { 'Accept': 'application/json' },
+        next: { revalidate: 300 },
+      }
+    );
+    clearTimeout(timeout);
+
+    if (!res.ok) return [];
+
+    const data = await res.json();
+    return (data.status_updates || []).map((item: {
+      created_at: string;
+      description: string;
+      project: { name: string; id: string };
+      user: string;
+      user_title: string;
+    }, idx: number) => ({
+      id: `cg-${idx}`,
+      title: item.description?.substring(0, 150),
+      description: item.description,
+      url: `https://www.coingecko.com/en/coins/${item.project?.id || ''}`,
+      source: item.project?.name || 'CoinGecko',
+      imageUrl: '',
+      publishedAt: item.created_at,
+      categories: [],
+      sentiment: 'neutral' as const,
+    }));
+  } catch {
+    return [];
   }
 }
 

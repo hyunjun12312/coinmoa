@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Zap } from 'lucide-react';
+import { Activity } from 'lucide-react';
 import { useDictionary } from '@/i18n/DictionaryProvider';
 
 export default function Footer() {
@@ -10,13 +10,13 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-[var(--border-color)] mt-16">
-      <div className="mx-auto max-w-[1400px] px-6 sm:px-10 py-12">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--accent-blue)]/10">
-                <Zap className="h-3.5 w-3.5 text-[var(--accent-blue)]" />
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--accent-blue)] to-[#0066cc] shadow-[0_0_12px_rgba(30,144,255,0.3)]">
+                <Activity className="h-3.5 w-3.5 text-white" />
               </div>
               <span className="text-sm font-semibold text-[var(--text-primary)]">CryptoPulse</span>
             </div>

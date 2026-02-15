@@ -49,7 +49,7 @@ function ProfitCalculator({ t }: { t: any }) {
 
   return (
     <div className="card">
-      <h3 className="text-base font-semibold mb-5">{t.tools.profitCalc.title}</h3>
+      <h3 className="text-[15px] font-bold mb-5">{t.tools.profitCalc.title}</h3>
       <div className="space-y-4">
         <InputField label={t.tools.profitCalc.buyPrice} value={buyPrice} onChange={setBuyPrice} type="number" />
         <InputField label={t.tools.profitCalc.sellPrice} value={sellPrice} onChange={setSellPrice} type="number" />
@@ -113,7 +113,7 @@ function PositionCalculator({ t }: { t: any }) {
 
   return (
     <div className="card">
-      <h3 className="text-base font-semibold mb-5">{t.tools.positionCalc.title}</h3>
+      <h3 className="text-[15px] font-bold mb-5">{t.tools.positionCalc.title}</h3>
       <div className="space-y-4">
         <InputField label={t.tools.positionCalc.totalCapital} value={capital} onChange={setCapital} type="number" />
         <InputField label={t.tools.positionCalc.riskPercent} value={riskPercent} onChange={setRiskPercent} type="number" />
@@ -122,7 +122,7 @@ function PositionCalculator({ t }: { t: any }) {
 
         <button
           onClick={calculate}
-          className="w-full rounded-lg bg-[var(--accent-blue)] py-2 text-[13px] font-medium text-white transition-opacity hover:opacity-90"
+          className="w-full rounded-xl bg-[var(--accent-blue)] py-2.5 text-sm font-semibold text-white transition-all hover:opacity-90 shadow-[0_2px_8px_rgba(30,144,255,0.25)]"
         >
           {t.tools.positionCalc.calculate}
         </button>
@@ -178,7 +178,7 @@ function CryptoConverter({ t }: { t: any }) {
 
   return (
     <div className="card">
-      <h3 className="text-base font-semibold mb-5">{t.tools.converter.title}</h3>
+      <h3 className="text-[15px] font-bold mb-5">{t.tools.converter.title}</h3>
       <div className="grid gap-4 md:grid-cols-4 items-end">
         <InputField label={t.tools.converter.amount} value={amount} onChange={setAmount} type="number" />
         <div>
@@ -204,7 +204,7 @@ function CryptoConverter({ t }: { t: any }) {
         <button
           onClick={convert}
           disabled={loading}
-          className="rounded-lg bg-[var(--accent-blue)] py-2 text-[13px] font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+          className="rounded-xl bg-[var(--accent-blue)] py-2.5 text-sm font-semibold text-white transition-all hover:opacity-90 shadow-[0_2px_8px_rgba(30,144,255,0.25)] disabled:opacity-50"
         >
           {loading ? '...' : '→'}
         </button>

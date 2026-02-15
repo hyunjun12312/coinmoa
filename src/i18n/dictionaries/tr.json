@@ -1,12 +1,187 @@
 {
-  "meta": { "title": "CryptoPulse - Gerçek Zamanlı Kripto Haberler · Fiyatlar · Sosyal Medya", "description": "Gerçek zamanlı kripto para fiyatları, haberler, influencer beslemeleri ve Kimchi Premium'u tek yerde kontrol edin.", "keywords": "bitcoin, ethereum, kripto para, kripto fiyat, kripto haber, gerçek zamanlı" },
-  "nav": { "dashboard": "Panel", "news": "Haberler", "social": "Sosyal Besleme", "kimchi": "Kimchi Premium", "tools": "Araçlar", "search": "Ara" },
-  "common": { "live": "CANLI", "refresh": "Yenile", "loading": "Yükleniyor...", "noData": "Veri yok.", "all": "Tümü", "coin": "Coin", "price": "Fiyat", "change24h": "24s", "marketCap": "Piyasa Değeri", "volume24h": "Hacim (24s)", "chart7d": "7G Grafik", "rank": "#", "secondsAgo": "sn önce", "minutesAgo": "dk önce", "hoursAgo": "sa önce", "daysAgo": "gün önce", "adSlot": "REKLAM", "adArea": "Reklam Alanı", "disclaimer": "Bu site yalnızca bilgi amaçlıdır, yatırım tavsiyesi değildir." },
-  "dashboard": { "title": "Gerçek Zamanlı Panel", "realTimePrice": "Gerçek Zamanlı Fiyatlar", "top100": "En İyi 100 Kripto Para", "fearGreedIndex": "Korku & Açgözlülük Endeksi", "totalMarketCap": "Toplam Piyasa Değeri", "btcDominance": "BTC Hakimiyeti", "volume24h": "24s Hacim", "activeCoins": "coin", "trendingCoins": "Trend", "extremeFear": "Aşırı Korku", "fear": "Korku", "neutral": "Nötr", "greed": "Açgözlülük", "extremeGreed": "Aşırı Açgözlülük" },
-  "news": { "title": "📰 Gerçek Zamanlı Kripto Haberler", "subtitle": "Dünya çapındaki ana medyalardan gerçek zamanlı kripto para haberleri. Duygu analizi dahil.", "realTimeNews": "Gerçek Zamanlı Haberler", "sentiment": { "positive": "Olumlu", "negative": "Olumsuz", "neutral": "Nötr" }, "categories": { "all": "Tümü", "btc": "BTC", "eth": "ETH", "defi": "DeFi", "regulation": "Düzenleme", "exchange": "Borsalar" } },
-  "social": { "title": "👥 Sosyal Medya / Influencerlar", "subtitle": "Kripto influencerlarından, Reddit ve ana medyadan gerçek zamanlı paylaşımlar.", "feedTitle": "Sosyal / Topluluk Beslemesi", "monitoring": "İzlenen Influencerlar", "allPlatforms": "Tümü", "allCoins": "Tüm Coinler" },
-  "kimchi": { "title": "🇰🇷 Kimchi Premium İzleyici", "subtitle": "Upbit (KRW) ve Binance (USDT) arasında gerçek zamanlı karşılaştırma.", "monitor": "Kimchi Premium İzleyici", "avgPremium": "Ort. Premium", "exchangeRate": "USD/KRW", "monitoring": "İzleme", "upbitKRW": "Upbit (KRW)", "binanceKRW": "Binance (KRW karş.)", "premium": "Premium", "whatIs": "💡 Kimchi Premium Nedir?", "whatIsDesc": "Kimchi Premium, Kore borsaları ile yabancı borsalar arasındaki kripto para fiyat farkıdır.", "positive": "Pozitif", "positiveDesc": "KR fiyat > Küresel", "zero": "Sıfır", "zeroDesc": "Aynı fiyat", "negative": "Negatif", "negativeDesc": "KR fiyat < Küresel" },
-  "tools": { "title": "🛠️ Kripto Yatırım Araçları", "subtitle": "Kripto para yatırımı için faydalı hesap makineleri ve araçlar.", "profitCalc": { "title": "💰 Kar Hesaplayıcı", "buyPrice": "Alış Fiyatı", "sellPrice": "Satış Fiyatı", "quantity": "Miktar", "fee": "Komisyon (%)", "calculate": "Hesapla", "investment": "Yatırım", "revenue": "Gelir", "profit": "Kar/Zarar", "profitRate": "Getiri Oranı" }, "positionCalc": { "title": "📐 Pozisyon Hesaplayıcı", "totalCapital": "Toplam Sermaye", "riskPercent": "Risk (%)", "entryPrice": "Giriş Fiyatı", "stopLoss": "Stop Loss", "calculate": "Hesapla", "riskAmount": "Risk Tutarı", "positionSize": "Pozisyon Boyutu", "quantity": "Miktar" }, "converter": { "title": "🔄 Kripto Dönüştürücü", "amount": "Tutar", "from": "Kaynak", "to": "Hedef", "result": "Sonuç" } },
-  "coin": { "detailTitle": "Detay", "overview": "Genel Bakış", "priceChart": "Fiyat Grafiği", "marketData": "Piyasa Verileri", "high24h": "24s Yüksek", "low24h": "24s Düşük", "circulatingSupply": "Dolaşımdaki Arz", "totalSupply": "Toplam Arz", "allTimeHigh": "Tüm Zamanların En Yükseği", "allTimeLow": "Tüm Zamanların En Düşüğü", "day": "1G", "week": "1H", "month": "1A", "threeMonths": "3A", "year": "1Y" },
-  "footer": { "description": "Gerçek zamanlı kripto bilgi platformu.", "price": "Fiyatlar", "info": "Bilgi", "notice": "Uyarı", "disclaimerFull": "Bu site yalnızca bilgi amaçlıdır. Kripto yatırımları sermaye kaybı riski taşır.", "copyright": "© 2026 CryptoPulse.", "dataBy": "Data by CoinGecko, Upbit, Binance, CryptoCompare" }
+  "meta": {
+    "title": "CryptoPulse - Gerçek Zamanlı Kripto Haberler · Fiyatlar · Sosyal Medya",
+    "description": "Gerçek zamanlı kripto para fiyatları, haberler, influencer beslemeleri ve Kimchi Premium'u tek yerde kontrol edin.",
+    "keywords": "bitcoin, ethereum, kripto para, kripto fiyat, kripto haber, gerçek zamanlı"
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "news": "Haberler",
+    "social": "Sosyal Besleme",
+    "kimchi": "Kimchi Premium",
+    "tools": "Araçlar",
+    "search": "Ara"
+  },
+  "common": {
+    "live": "CANLI",
+    "refresh": "Yenile",
+    "loading": "Yükleniyor...",
+    "noData": "Veri yok.",
+    "all": "Tümü",
+    "coin": "Coin",
+    "price": "Fiyat",
+    "change24h": "24s",
+    "marketCap": "Piyasa Değeri",
+    "volume24h": "Hacim (24s)",
+    "chart7d": "7G Grafik",
+    "rank": "#",
+    "secondsAgo": "sn önce",
+    "minutesAgo": "dk önce",
+    "hoursAgo": "sa önce",
+    "daysAgo": "gün önce",
+    "adSlot": "REKLAM",
+    "adArea": "Reklam Alanı",
+    "disclaimer": "Bu site yalnızca bilgi amaçlıdır, yatırım tavsiyesi değildir."
+  },
+  "dashboard": {
+    "title": "Gerçek Zamanlı Panel",
+    "realTimePrice": "Gerçek Zamanlı Fiyatlar",
+    "top100": "En İyi 100 Kripto Para",
+    "fearGreedIndex": "Korku & Açgözlülük Endeksi",
+    "totalMarketCap": "Toplam Piyasa Değeri",
+    "btcDominance": "BTC Hakimiyeti",
+    "volume24h": "24s Hacim",
+    "activeCoins": "coin",
+    "trendingCoins": "Trend",
+    "extremeFear": "Aşırı Korku",
+    "fear": "Korku",
+    "neutral": "Nötr",
+    "greed": "Açgözlülük",
+    "extremeGreed": "Aşırı Açgözlülük"
+  },
+  "news": {
+    "title": "📰 Gerçek Zamanlı Kripto Haberler",
+    "subtitle": "Dünya çapındaki ana medyalardan gerçek zamanlı kripto para haberleri. Duygu analizi dahil.",
+    "realTimeNews": "Gerçek Zamanlı Haberler",
+    "sentiment": {
+      "positive": "Olumlu",
+      "negative": "Olumsuz",
+      "neutral": "Nötr"
+    },
+    "categories": {
+      "all": "Tümü",
+      "btc": "BTC",
+      "eth": "ETH",
+      "defi": "DeFi",
+      "regulation": "Düzenleme",
+      "exchange": "Borsalar"
+    }
+  },
+  "social": {
+    "title": "👥 Sosyal Medya / Influencerlar",
+    "subtitle": "Kripto influencerlarından, Reddit ve ana medyadan gerçek zamanlı paylaşımlar.",
+    "feedTitle": "Sosyal / Topluluk Beslemesi",
+    "monitoring": "İzlenen Influencerlar",
+    "allPlatforms": "Tümü",
+    "allCoins": "Tüm Coinler"
+  },
+  "kimchi": {
+    "title": "🇰🇷 Kimchi Premium İzleyici",
+    "subtitle": "Upbit (KRW) ve Binance (USDT) arasında gerçek zamanlı karşılaştırma.",
+    "monitor": "Kimchi Premium İzleyici",
+    "avgPremium": "Ort. Premium",
+    "exchangeRate": "USD/KRW",
+    "monitoring": "İzleme",
+    "upbitKRW": "Upbit (KRW)",
+    "binanceKRW": "Binance (KRW karş.)",
+    "premium": "Premium",
+    "whatIs": "💡 Kimchi Premium Nedir?",
+    "whatIsDesc": "Kimchi Premium, Kore borsaları ile yabancı borsalar arasındaki kripto para fiyat farkıdır.",
+    "positive": "Pozitif",
+    "positiveDesc": "KR fiyat > Küresel",
+    "zero": "Sıfır",
+    "zeroDesc": "Aynı fiyat",
+    "negative": "Negatif",
+    "negativeDesc": "KR fiyat < Küresel"
+  },
+  "tools": {
+    "title": "🛠️ Kripto Yatırım Araçları",
+    "subtitle": "Kripto para yatırımı için faydalı hesap makineleri ve araçlar.",
+    "profitCalc": {
+      "title": "💰 Kar Hesaplayıcı",
+      "buyPrice": "Alış Fiyatı",
+      "sellPrice": "Satış Fiyatı",
+      "quantity": "Miktar",
+      "fee": "Komisyon (%)",
+      "calculate": "Hesapla",
+      "investment": "Yatırım",
+      "revenue": "Gelir",
+      "profit": "Kar/Zarar",
+      "profitRate": "Getiri Oranı"
+    },
+    "positionCalc": {
+      "title": "📐 Pozisyon Hesaplayıcı",
+      "totalCapital": "Toplam Sermaye",
+      "riskPercent": "Risk (%)",
+      "entryPrice": "Giriş Fiyatı",
+      "stopLoss": "Stop Loss",
+      "calculate": "Hesapla",
+      "riskAmount": "Risk Tutarı",
+      "positionSize": "Pozisyon Boyutu",
+      "quantity": "Miktar"
+    },
+    "converter": {
+      "title": "🔄 Kripto Dönüştürücü",
+      "amount": "Tutar",
+      "from": "Kaynak",
+      "to": "Hedef",
+      "result": "Sonuç"
+    }
+  },
+  "coin": {
+    "detailTitle": "Detay",
+    "overview": "Genel Bakış",
+    "priceChart": "Fiyat Grafiği",
+    "marketData": "Piyasa Verileri",
+    "high24h": "24s Yüksek",
+    "low24h": "24s Düşük",
+    "circulatingSupply": "Dolaşımdaki Arz",
+    "totalSupply": "Toplam Arz",
+    "allTimeHigh": "Tüm Zamanların En Yükseği",
+    "allTimeLow": "Tüm Zamanların En Düşüğü",
+    "day": "1G",
+    "week": "1H",
+    "month": "1A",
+    "threeMonths": "3A",
+    "year": "1Y"
+  },
+  "footer": {
+    "description": "Gerçek zamanlı kripto bilgi platformu.",
+    "price": "Fiyatlar",
+    "info": "Bilgi",
+    "notice": "Uyarı",
+    "disclaimerFull": "Bu site yalnızca bilgi amaçlıdır. Kripto yatırımları sermaye kaybı riski taşır.",
+    "copyright": "© 2026 CryptoPulse.",
+    "dataBy": "Data by CoinGecko, Upbit, Binance, CryptoCompare"
+  },
+  "pageSeo": {
+    "dashboard": {
+      "title": "Gerçek Zamanlı Kripto Paneli",
+      "description": "Bitcoin, Ethereum ve 100'den fazla kripto paranın canlı fiyatlarını, piyasa değerini, işlem hacmini ve trendlerini takip edin."
+    },
+    "news": {
+      "title": "Kripto Haberleri",
+      "description": "Dünyanın önde gelen medya kuruluşlarından gerçek zamanlı duygu analizi ile en son kripto para haberleri."
+    },
+    "social": {
+      "title": "Kripto Sosyal Akışı",
+      "description": "En iyi kripto influencer'ların, Reddit ve topluluk tartışmalarının gerçek zamanlı paylaşımları."
+    },
+    "kimchi": {
+      "title": "Kimchi Premium İzleyicisi",
+      "description": "Upbit KRW ve Binance USDT fiyatlarını karşılaştıran gerçek zamanlı Kimchi Premium takipçisi. Her 30 saniyede güncelleme."
+    },
+    "tools": {
+      "title": "Kripto Yatırım Araçları",
+      "description": "Ücretsiz kripto hesap makineleri: kâr/zarar hesaplayıcı, pozisyon büyüklüğü hesaplayıcı ve kripto para dönüştürücü."
+    },
+    "search": {
+      "title": "Kripto Para Ara",
+      "description": "İsim veya sembol ile herhangi bir kripto parayı arayın. Gerçek zamanlı fiyatlar ve detaylı bilgi alın."
+    },
+    "coinDetail": {
+      "title": "{name} Fiyatı ve Grafiği",
+      "description": "Canlı {name} ({symbol}) fiyatı, piyasa değeri, hacim, fiyat grafikleri ve detaylı piyasa verileri."
+    }
+  }
 }

@@ -1,12 +1,187 @@
 {
-  "meta": { "title": "CryptoPulse - Berita Crypto Real-Time · Harga · Feed Sosial", "description": "Cek harga cryptocurrency real-time, berita, feed influencer, dan Kimchi Premium di satu tempat.", "keywords": "bitcoin, ethereum, cryptocurrency, harga crypto, berita crypto, real-time" },
-  "nav": { "dashboard": "Dasbor", "news": "Berita", "social": "Feed Sosial", "kimchi": "Kimchi Premium", "tools": "Alat", "search": "Cari" },
-  "common": { "live": "LANGSUNG", "refresh": "Segarkan", "loading": "Memuat...", "noData": "Tidak ada data.", "all": "Semua", "coin": "Koin", "price": "Harga", "change24h": "24j", "marketCap": "Kap. Pasar", "volume24h": "Volume (24j)", "chart7d": "Grafik 7H", "rank": "#", "secondsAgo": "dtk lalu", "minutesAgo": "mnt lalu", "hoursAgo": "jam lalu", "daysAgo": "hari lalu", "adSlot": "IKLAN", "adArea": "Area Iklan", "disclaimer": "Situs ini hanya untuk informasi, bukan saran investasi." },
-  "dashboard": { "title": "Dasbor Real-Time", "realTimePrice": "Harga Real-Time", "top100": "Top 100 Cryptocurrency", "fearGreedIndex": "Indeks Ketakutan & Keserakahan", "totalMarketCap": "Total Kap. Pasar", "btcDominance": "Dominasi BTC", "volume24h": "Volume 24j", "activeCoins": "koin", "trendingCoins": "Trending", "extremeFear": "Ketakutan Ekstrem", "fear": "Ketakutan", "neutral": "Netral", "greed": "Keserakahan", "extremeGreed": "Keserakahan Ekstrem" },
-  "news": { "title": "📰 Berita Crypto Real-Time", "subtitle": "Pengumpulan berita crypto real-time dari media utama dunia. Termasuk analisis sentimen.", "realTimeNews": "Berita Real-Time", "sentiment": { "positive": "Positif", "negative": "Negatif", "neutral": "Netral" }, "categories": { "all": "Semua", "btc": "BTC", "eth": "ETH", "defi": "DeFi", "regulation": "Regulasi", "exchange": "Bursa" } },
-  "social": { "title": "👥 Sosial / Influencer", "subtitle": "Postingan real-time dari influencer crypto, Reddit, dan media utama.", "feedTitle": "Feed Sosial / Komunitas", "monitoring": "Influencer yang Dipantau", "allPlatforms": "Semua", "allCoins": "Semua Koin" },
-  "kimchi": { "title": "🇰🇷 Monitor Kimchi Premium", "subtitle": "Perbandingan real-time antara Upbit (KRW) dan Binance (USDT).", "monitor": "Monitor Kimchi Premium", "avgPremium": "Premium Rata-rata", "exchangeRate": "USD/KRW", "monitoring": "Pemantauan", "upbitKRW": "Upbit (KRW)", "binanceKRW": "Binance (setara KRW)", "premium": "Premium", "whatIs": "💡 Apa itu Kimchi Premium?", "whatIsDesc": "Kimchi Premium adalah perbedaan harga crypto antara bursa Korea dan luar negeri.", "positive": "Positif", "positiveDesc": "Harga KR > Global", "zero": "Nol", "zeroDesc": "Harga sama", "negative": "Negatif", "negativeDesc": "Harga KR < Global" },
-  "tools": { "title": "🛠️ Alat Investasi Crypto", "subtitle": "Kalkulator dan alat berguna untuk investasi cryptocurrency.", "profitCalc": { "title": "💰 Kalkulator Keuntungan", "buyPrice": "Harga Beli", "sellPrice": "Harga Jual", "quantity": "Jumlah", "fee": "Biaya (%)", "calculate": "Hitung", "investment": "Investasi", "revenue": "Pendapatan", "profit": "Untung/Rugi", "profitRate": "Tingkat Pengembalian" }, "positionCalc": { "title": "📐 Kalkulator Ukuran Posisi", "totalCapital": "Total Modal", "riskPercent": "Risiko (%)", "entryPrice": "Harga Masuk", "stopLoss": "Stop Loss", "calculate": "Hitung", "riskAmount": "Jumlah Risiko", "positionSize": "Ukuran Posisi", "quantity": "Jumlah" }, "converter": { "title": "🔄 Konverter Crypto", "amount": "Jumlah", "from": "Dari", "to": "Ke", "result": "Hasil" } },
-  "coin": { "detailTitle": "Detail", "overview": "Ikhtisar", "priceChart": "Grafik Harga", "marketData": "Data Pasar", "high24h": "Tertinggi 24j", "low24h": "Terendah 24j", "circulatingSupply": "Suplai Beredar", "totalSupply": "Total Suplai", "allTimeHigh": "Tertinggi Sepanjang Masa", "allTimeLow": "Terendah Sepanjang Masa", "day": "1H", "week": "1M", "month": "1B", "threeMonths": "3B", "year": "1T" },
-  "footer": { "description": "Platform informasi crypto real-time.", "price": "Harga", "info": "Informasi", "notice": "Pemberitahuan", "disclaimerFull": "Situs ini hanya untuk informasi. Investasi crypto memiliki risiko kehilangan modal.", "copyright": "© 2026 CryptoPulse.", "dataBy": "Data by CoinGecko, Upbit, Binance, CryptoCompare" }
+  "meta": {
+    "title": "CryptoPulse - Berita Crypto Real-Time · Harga · Feed Sosial",
+    "description": "Cek harga cryptocurrency real-time, berita, feed influencer, dan Kimchi Premium di satu tempat.",
+    "keywords": "bitcoin, ethereum, cryptocurrency, harga crypto, berita crypto, real-time"
+  },
+  "nav": {
+    "dashboard": "Dasbor",
+    "news": "Berita",
+    "social": "Feed Sosial",
+    "kimchi": "Kimchi Premium",
+    "tools": "Alat",
+    "search": "Cari"
+  },
+  "common": {
+    "live": "LANGSUNG",
+    "refresh": "Segarkan",
+    "loading": "Memuat...",
+    "noData": "Tidak ada data.",
+    "all": "Semua",
+    "coin": "Koin",
+    "price": "Harga",
+    "change24h": "24j",
+    "marketCap": "Kap. Pasar",
+    "volume24h": "Volume (24j)",
+    "chart7d": "Grafik 7H",
+    "rank": "#",
+    "secondsAgo": "dtk lalu",
+    "minutesAgo": "mnt lalu",
+    "hoursAgo": "jam lalu",
+    "daysAgo": "hari lalu",
+    "adSlot": "IKLAN",
+    "adArea": "Area Iklan",
+    "disclaimer": "Situs ini hanya untuk informasi, bukan saran investasi."
+  },
+  "dashboard": {
+    "title": "Dasbor Real-Time",
+    "realTimePrice": "Harga Real-Time",
+    "top100": "Top 100 Cryptocurrency",
+    "fearGreedIndex": "Indeks Ketakutan & Keserakahan",
+    "totalMarketCap": "Total Kap. Pasar",
+    "btcDominance": "Dominasi BTC",
+    "volume24h": "Volume 24j",
+    "activeCoins": "koin",
+    "trendingCoins": "Trending",
+    "extremeFear": "Ketakutan Ekstrem",
+    "fear": "Ketakutan",
+    "neutral": "Netral",
+    "greed": "Keserakahan",
+    "extremeGreed": "Keserakahan Ekstrem"
+  },
+  "news": {
+    "title": "📰 Berita Crypto Real-Time",
+    "subtitle": "Pengumpulan berita crypto real-time dari media utama dunia. Termasuk analisis sentimen.",
+    "realTimeNews": "Berita Real-Time",
+    "sentiment": {
+      "positive": "Positif",
+      "negative": "Negatif",
+      "neutral": "Netral"
+    },
+    "categories": {
+      "all": "Semua",
+      "btc": "BTC",
+      "eth": "ETH",
+      "defi": "DeFi",
+      "regulation": "Regulasi",
+      "exchange": "Bursa"
+    }
+  },
+  "social": {
+    "title": "👥 Sosial / Influencer",
+    "subtitle": "Postingan real-time dari influencer crypto, Reddit, dan media utama.",
+    "feedTitle": "Feed Sosial / Komunitas",
+    "monitoring": "Influencer yang Dipantau",
+    "allPlatforms": "Semua",
+    "allCoins": "Semua Koin"
+  },
+  "kimchi": {
+    "title": "🇰🇷 Monitor Kimchi Premium",
+    "subtitle": "Perbandingan real-time antara Upbit (KRW) dan Binance (USDT).",
+    "monitor": "Monitor Kimchi Premium",
+    "avgPremium": "Premium Rata-rata",
+    "exchangeRate": "USD/KRW",
+    "monitoring": "Pemantauan",
+    "upbitKRW": "Upbit (KRW)",
+    "binanceKRW": "Binance (setara KRW)",
+    "premium": "Premium",
+    "whatIs": "💡 Apa itu Kimchi Premium?",
+    "whatIsDesc": "Kimchi Premium adalah perbedaan harga crypto antara bursa Korea dan luar negeri.",
+    "positive": "Positif",
+    "positiveDesc": "Harga KR > Global",
+    "zero": "Nol",
+    "zeroDesc": "Harga sama",
+    "negative": "Negatif",
+    "negativeDesc": "Harga KR < Global"
+  },
+  "tools": {
+    "title": "🛠️ Alat Investasi Crypto",
+    "subtitle": "Kalkulator dan alat berguna untuk investasi cryptocurrency.",
+    "profitCalc": {
+      "title": "💰 Kalkulator Keuntungan",
+      "buyPrice": "Harga Beli",
+      "sellPrice": "Harga Jual",
+      "quantity": "Jumlah",
+      "fee": "Biaya (%)",
+      "calculate": "Hitung",
+      "investment": "Investasi",
+      "revenue": "Pendapatan",
+      "profit": "Untung/Rugi",
+      "profitRate": "Tingkat Pengembalian"
+    },
+    "positionCalc": {
+      "title": "📐 Kalkulator Ukuran Posisi",
+      "totalCapital": "Total Modal",
+      "riskPercent": "Risiko (%)",
+      "entryPrice": "Harga Masuk",
+      "stopLoss": "Stop Loss",
+      "calculate": "Hitung",
+      "riskAmount": "Jumlah Risiko",
+      "positionSize": "Ukuran Posisi",
+      "quantity": "Jumlah"
+    },
+    "converter": {
+      "title": "🔄 Konverter Crypto",
+      "amount": "Jumlah",
+      "from": "Dari",
+      "to": "Ke",
+      "result": "Hasil"
+    }
+  },
+  "coin": {
+    "detailTitle": "Detail",
+    "overview": "Ikhtisar",
+    "priceChart": "Grafik Harga",
+    "marketData": "Data Pasar",
+    "high24h": "Tertinggi 24j",
+    "low24h": "Terendah 24j",
+    "circulatingSupply": "Suplai Beredar",
+    "totalSupply": "Total Suplai",
+    "allTimeHigh": "Tertinggi Sepanjang Masa",
+    "allTimeLow": "Terendah Sepanjang Masa",
+    "day": "1H",
+    "week": "1M",
+    "month": "1B",
+    "threeMonths": "3B",
+    "year": "1T"
+  },
+  "footer": {
+    "description": "Platform informasi crypto real-time.",
+    "price": "Harga",
+    "info": "Informasi",
+    "notice": "Pemberitahuan",
+    "disclaimerFull": "Situs ini hanya untuk informasi. Investasi crypto memiliki risiko kehilangan modal.",
+    "copyright": "© 2026 CryptoPulse.",
+    "dataBy": "Data by CoinGecko, Upbit, Binance, CryptoCompare"
+  },
+  "pageSeo": {
+    "dashboard": {
+      "title": "Dashboard Kripto Real-Time",
+      "description": "Lacak harga langsung, kapitalisasi pasar, volume perdagangan, dan tren Bitcoin, Ethereum, dan lebih dari 100 mata uang kripto."
+    },
+    "news": {
+      "title": "Berita Kripto",
+      "description": "Berita mata uang kripto terbaru dengan analisis sentimen real-time dari media utama di seluruh dunia."
+    },
+    "social": {
+      "title": "Feed Sosial Kripto",
+      "description": "Postingan real-time dari influencer kripto top, Reddit, dan diskusi komunitas."
+    },
+    "kimchi": {
+      "title": "Monitor Kimchi Premium",
+      "description": "Pelacak Kimchi Premium real-time yang membandingkan harga Upbit KRW dan Binance USDT. Pembaruan setiap 30 detik."
+    },
+    "tools": {
+      "title": "Alat Investasi Kripto",
+      "description": "Kalkulator kripto gratis: kalkulator untung/rugi, kalkulator ukuran posisi, dan konverter mata uang kripto."
+    },
+    "search": {
+      "title": "Cari Mata Uang Kripto",
+      "description": "Cari mata uang kripto apa pun berdasarkan nama atau simbol. Dapatkan harga real-time dan informasi detail."
+    },
+    "coinDetail": {
+      "title": "Harga dan Grafik {name}",
+      "description": "Harga langsung {name} ({symbol}), kapitalisasi pasar, volume, grafik harga, dan data pasar terperinci."
+    }
+  }
 }

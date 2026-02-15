@@ -1,12 +1,187 @@
 {
-  "meta": { "title": "CryptoPulse - Actualités Crypto en Temps Réel · Prix · Flux Social", "description": "Consultez les prix des cryptomonnaies en temps réel, les actualités, les flux d'influenceurs et le Kimchi Premium.", "keywords": "bitcoin, ethereum, cryptomonnaie, prix crypto, actualités crypto, temps réel" },
-  "nav": { "dashboard": "Tableau de Bord", "news": "Actualités", "social": "Flux Social", "kimchi": "Kimchi Premium", "tools": "Outils", "search": "Rechercher" },
-  "common": { "live": "EN DIRECT", "refresh": "Actualiser", "loading": "Chargement...", "noData": "Aucune donnée disponible.", "all": "Tout", "coin": "Crypto", "price": "Prix", "change24h": "24h", "marketCap": "Cap. Marché", "volume24h": "Volume (24h)", "chart7d": "Graphique 7J", "rank": "#", "secondsAgo": "s", "minutesAgo": "min", "hoursAgo": "h", "daysAgo": "j", "adSlot": "PUB", "adArea": "Espace Publicitaire", "disclaimer": "Ce site est à titre informatif uniquement, pas un conseil d'investissement." },
-  "dashboard": { "title": "Tableau de Bord en Temps Réel", "realTimePrice": "Prix en Temps Réel", "top100": "Top 100 Cryptomonnaies", "fearGreedIndex": "Indice Peur & Avidité", "totalMarketCap": "Cap. Totale du Marché", "btcDominance": "Dominance BTC", "volume24h": "Volume 24h", "activeCoins": "cryptos", "trendingCoins": "Tendances", "extremeFear": "Peur Extrême", "fear": "Peur", "neutral": "Neutre", "greed": "Avidité", "extremeGreed": "Avidité Extrême" },
-  "news": { "title": "📰 Actualités Crypto en Temps Réel", "subtitle": "Collecte en temps réel des actualités crypto des principaux médias mondiaux. Analyse de sentiment incluse.", "realTimeNews": "Actualités en Temps Réel", "sentiment": { "positive": "Positif", "negative": "Négatif", "neutral": "Neutre" }, "categories": { "all": "Tout", "btc": "BTC", "eth": "ETH", "defi": "DeFi", "regulation": "Régulation", "exchange": "Exchanges" } },
-  "social": { "title": "👥 Flux Social / Influenceurs", "subtitle": "Posts en temps réel d'influenceurs crypto, Reddit et médias principaux. Marquage automatique des cryptos.", "feedTitle": "Flux Social / Communauté", "monitoring": "Influenceurs Suivis", "allPlatforms": "Tous", "allCoins": "Toutes les Cryptos" },
-  "kimchi": { "title": "🇰🇷 Moniteur Kimchi Premium", "subtitle": "Comparaison en temps réel entre Upbit (KRW) et Binance (USDT). Mise à jour toutes les 30 secondes.", "monitor": "Moniteur Kimchi Premium", "avgPremium": "Premium Moyen", "exchangeRate": "USD/KRW", "monitoring": "Surveillance", "upbitKRW": "Upbit (KRW)", "binanceKRW": "Binance (equiv. KRW)", "premium": "Premium", "whatIs": "💡 Qu'est-ce que le Kimchi Premium ?", "whatIsDesc": "Le Kimchi Premium désigne la différence de prix des cryptomonnaies entre les exchanges coréens et étrangers.", "positive": "Positif", "positiveDesc": "Prix KR > Mondial", "zero": "Zéro", "zeroDesc": "Même prix", "negative": "Négatif", "negativeDesc": "Prix KR < Mondial" },
-  "tools": { "title": "🛠️ Outils d'Investissement Crypto", "subtitle": "Calculateurs et outils utiles pour l'investissement en cryptomonnaies.", "profitCalc": { "title": "💰 Calculateur de Profits", "buyPrice": "Prix d'Achat", "sellPrice": "Prix de Vente", "quantity": "Quantité", "fee": "Frais (%)", "calculate": "Calculer", "investment": "Investissement", "revenue": "Revenus", "profit": "Profit/Perte", "profitRate": "Taux de Retour" }, "positionCalc": { "title": "📐 Calculateur de Position", "totalCapital": "Capital Total", "riskPercent": "Risque (%)", "entryPrice": "Prix d'Entrée", "stopLoss": "Stop Loss", "calculate": "Calculer", "riskAmount": "Montant à Risque", "positionSize": "Taille de Position", "quantity": "Quantité" }, "converter": { "title": "🔄 Convertisseur Crypto", "amount": "Montant", "from": "De", "to": "Vers", "result": "Résultat" } },
-  "coin": { "detailTitle": "Détail", "overview": "Aperçu", "priceChart": "Graphique des Prix", "marketData": "Données de Marché", "high24h": "Plus Haut 24h", "low24h": "Plus Bas 24h", "circulatingSupply": "Offre en Circulation", "totalSupply": "Offre Totale", "allTimeHigh": "Plus Haut Historique", "allTimeLow": "Plus Bas Historique", "day": "1J", "week": "1S", "month": "1M", "threeMonths": "3M", "year": "1A" },
-  "footer": { "description": "Plateforme d'information crypto en temps réel.\nPrix, actualités, réseaux sociaux et Kimchi Premium.", "price": "Prix", "info": "Information", "notice": "Avis", "disclaimerFull": "Ce site est à titre informatif uniquement. Les investissements en crypto comportent un risque de perte en capital.", "copyright": "© 2026 CryptoPulse. Plateforme crypto en temps réel.", "dataBy": "Data by CoinGecko, Upbit, Binance, CryptoCompare" }
+  "meta": {
+    "title": "CryptoPulse - Actualités Crypto en Temps Réel · Prix · Flux Social",
+    "description": "Consultez les prix des cryptomonnaies en temps réel, les actualités, les flux d'influenceurs et le Kimchi Premium.",
+    "keywords": "bitcoin, ethereum, cryptomonnaie, prix crypto, actualités crypto, temps réel"
+  },
+  "nav": {
+    "dashboard": "Tableau de Bord",
+    "news": "Actualités",
+    "social": "Flux Social",
+    "kimchi": "Kimchi Premium",
+    "tools": "Outils",
+    "search": "Rechercher"
+  },
+  "common": {
+    "live": "EN DIRECT",
+    "refresh": "Actualiser",
+    "loading": "Chargement...",
+    "noData": "Aucune donnée disponible.",
+    "all": "Tout",
+    "coin": "Crypto",
+    "price": "Prix",
+    "change24h": "24h",
+    "marketCap": "Cap. Marché",
+    "volume24h": "Volume (24h)",
+    "chart7d": "Graphique 7J",
+    "rank": "#",
+    "secondsAgo": "s",
+    "minutesAgo": "min",
+    "hoursAgo": "h",
+    "daysAgo": "j",
+    "adSlot": "PUB",
+    "adArea": "Espace Publicitaire",
+    "disclaimer": "Ce site est à titre informatif uniquement, pas un conseil d'investissement."
+  },
+  "dashboard": {
+    "title": "Tableau de Bord en Temps Réel",
+    "realTimePrice": "Prix en Temps Réel",
+    "top100": "Top 100 Cryptomonnaies",
+    "fearGreedIndex": "Indice Peur & Avidité",
+    "totalMarketCap": "Cap. Totale du Marché",
+    "btcDominance": "Dominance BTC",
+    "volume24h": "Volume 24h",
+    "activeCoins": "cryptos",
+    "trendingCoins": "Tendances",
+    "extremeFear": "Peur Extrême",
+    "fear": "Peur",
+    "neutral": "Neutre",
+    "greed": "Avidité",
+    "extremeGreed": "Avidité Extrême"
+  },
+  "news": {
+    "title": "📰 Actualités Crypto en Temps Réel",
+    "subtitle": "Collecte en temps réel des actualités crypto des principaux médias mondiaux. Analyse de sentiment incluse.",
+    "realTimeNews": "Actualités en Temps Réel",
+    "sentiment": {
+      "positive": "Positif",
+      "negative": "Négatif",
+      "neutral": "Neutre"
+    },
+    "categories": {
+      "all": "Tout",
+      "btc": "BTC",
+      "eth": "ETH",
+      "defi": "DeFi",
+      "regulation": "Régulation",
+      "exchange": "Exchanges"
+    }
+  },
+  "social": {
+    "title": "👥 Flux Social / Influenceurs",
+    "subtitle": "Posts en temps réel d'influenceurs crypto, Reddit et médias principaux. Marquage automatique des cryptos.",
+    "feedTitle": "Flux Social / Communauté",
+    "monitoring": "Influenceurs Suivis",
+    "allPlatforms": "Tous",
+    "allCoins": "Toutes les Cryptos"
+  },
+  "kimchi": {
+    "title": "🇰🇷 Moniteur Kimchi Premium",
+    "subtitle": "Comparaison en temps réel entre Upbit (KRW) et Binance (USDT). Mise à jour toutes les 30 secondes.",
+    "monitor": "Moniteur Kimchi Premium",
+    "avgPremium": "Premium Moyen",
+    "exchangeRate": "USD/KRW",
+    "monitoring": "Surveillance",
+    "upbitKRW": "Upbit (KRW)",
+    "binanceKRW": "Binance (equiv. KRW)",
+    "premium": "Premium",
+    "whatIs": "💡 Qu'est-ce que le Kimchi Premium ?",
+    "whatIsDesc": "Le Kimchi Premium désigne la différence de prix des cryptomonnaies entre les exchanges coréens et étrangers.",
+    "positive": "Positif",
+    "positiveDesc": "Prix KR > Mondial",
+    "zero": "Zéro",
+    "zeroDesc": "Même prix",
+    "negative": "Négatif",
+    "negativeDesc": "Prix KR < Mondial"
+  },
+  "tools": {
+    "title": "🛠️ Outils d'Investissement Crypto",
+    "subtitle": "Calculateurs et outils utiles pour l'investissement en cryptomonnaies.",
+    "profitCalc": {
+      "title": "💰 Calculateur de Profits",
+      "buyPrice": "Prix d'Achat",
+      "sellPrice": "Prix de Vente",
+      "quantity": "Quantité",
+      "fee": "Frais (%)",
+      "calculate": "Calculer",
+      "investment": "Investissement",
+      "revenue": "Revenus",
+      "profit": "Profit/Perte",
+      "profitRate": "Taux de Retour"
+    },
+    "positionCalc": {
+      "title": "📐 Calculateur de Position",
+      "totalCapital": "Capital Total",
+      "riskPercent": "Risque (%)",
+      "entryPrice": "Prix d'Entrée",
+      "stopLoss": "Stop Loss",
+      "calculate": "Calculer",
+      "riskAmount": "Montant à Risque",
+      "positionSize": "Taille de Position",
+      "quantity": "Quantité"
+    },
+    "converter": {
+      "title": "🔄 Convertisseur Crypto",
+      "amount": "Montant",
+      "from": "De",
+      "to": "Vers",
+      "result": "Résultat"
+    }
+  },
+  "coin": {
+    "detailTitle": "Détail",
+    "overview": "Aperçu",
+    "priceChart": "Graphique des Prix",
+    "marketData": "Données de Marché",
+    "high24h": "Plus Haut 24h",
+    "low24h": "Plus Bas 24h",
+    "circulatingSupply": "Offre en Circulation",
+    "totalSupply": "Offre Totale",
+    "allTimeHigh": "Plus Haut Historique",
+    "allTimeLow": "Plus Bas Historique",
+    "day": "1J",
+    "week": "1S",
+    "month": "1M",
+    "threeMonths": "3M",
+    "year": "1A"
+  },
+  "footer": {
+    "description": "Plateforme d'information crypto en temps réel.\nPrix, actualités, réseaux sociaux et Kimchi Premium.",
+    "price": "Prix",
+    "info": "Information",
+    "notice": "Avis",
+    "disclaimerFull": "Ce site est à titre informatif uniquement. Les investissements en crypto comportent un risque de perte en capital.",
+    "copyright": "© 2026 CryptoPulse. Plateforme crypto en temps réel.",
+    "dataBy": "Data by CoinGecko, Upbit, Binance, CryptoCompare"
+  },
+  "pageSeo": {
+    "dashboard": {
+      "title": "Tableau de Bord Crypto en Temps Réel",
+      "description": "Suivez les prix en direct, la capitalisation boursière, le volume et les tendances de Bitcoin, Ethereum et plus de 100 cryptomonnaies."
+    },
+    "news": {
+      "title": "Actualités Crypto",
+      "description": "Dernières actualités sur les cryptomonnaies avec analyse de sentiment en temps réel des principaux médias mondiaux."
+    },
+    "social": {
+      "title": "Flux Social Crypto",
+      "description": "Publications en temps réel des principaux influenceurs crypto, Reddit et discussions communautaires."
+    },
+    "kimchi": {
+      "title": "Moniteur Kimchi Premium",
+      "description": "Suivi en temps réel du Kimchi Premium comparant les prix Upbit KRW et Binance USDT. Mise à jour toutes les 30 secondes."
+    },
+    "tools": {
+      "title": "Outils d'Investissement Crypto",
+      "description": "Calculatrices crypto gratuites : calculateur de profits/pertes, calculateur de taille de position et convertisseur."
+    },
+    "search": {
+      "title": "Rechercher des Cryptomonnaies",
+      "description": "Recherchez n'importe quelle cryptomonnaie par nom ou symbole. Obtenez les prix en temps réel et des informations détaillées."
+    },
+    "coinDetail": {
+      "title": "Prix et Graphique de {name}",
+      "description": "Prix en direct de {name} ({symbol}), capitalisation, volume, graphiques de prix et données de marché détaillées."
+    }
+  }
 }

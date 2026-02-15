@@ -157,6 +157,15 @@ export interface Dictionary {
     copyright: string;
     dataBy: string;
   };
+  pageSeo: {
+    dashboard: { title: string; description: string };
+    news: { title: string; description: string };
+    social: { title: string; description: string };
+    kimchi: { title: string; description: string };
+    tools: { title: string; description: string };
+    search: { title: string; description: string };
+    coinDetail: { title: string; description: string };
+  };
 }
 
 const dictionaries: Record<Locale, () => Promise<Dictionary>> = {

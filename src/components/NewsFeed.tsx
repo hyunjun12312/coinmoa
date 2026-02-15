@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { ExternalLink, RefreshCw } from 'lucide-react';
+import { ExternalLink, RefreshCw, Newspaper } from 'lucide-react';
 import type { NewsItem } from '@/types';
 import { timeAgo } from '@/lib/api';
 import { useDictionary } from '@/i18n/DictionaryProvider';
@@ -9,18 +9,28 @@ import { useDictionary } from '@/i18n/DictionaryProvider';
 export default function NewsFeed({ limit = 20 }: { limit?: number }) {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [filter, setFilter] = useState<string>('all');
   const { dictionary: t } = useDictionary();
 
   const fetchNews = useCallback(async () => {
+    setError(false);
     try {
       const res = await fetch('/api/news');
       if (res.ok) {
         const data = await res.json();
-        if (Array.isArray(data)) setNews(data);
+        if (Array.isArray(data)) {
+          setNews(data);
+          if (data.length === 0) setError(true);
+        } else {
+          setError(true);
+        }
+      } else {
+        setError(true);
       }
     } catch (e) {
       console.error('Failed to fetch news', e);
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -36,10 +46,16 @@ export default function NewsFeed({ limit = 20 }: { limit?: number }) {
     ? news
     : news.filter(n => n.categories?.some(c => c.toLowerCase().includes(filter)));
 
-  const sentimentDot = (s?: string) => {
+  const sentimentColor = (s?: string) => {
     if (s === 'positive') return 'bg-[var(--accent-green)]';
     if (s === 'negative') return 'bg-[var(--accent-red)]';
-    return 'bg-[var(--text-tertiary)]';
+    return 'bg-[var(--text-muted)]';
+  };
+
+  const sentimentBg = (s?: string) => {
+    if (s === 'positive') return 'border-l-[var(--accent-green)]';
+    if (s === 'negative') return 'border-l-[var(--accent-red)]';
+    return 'border-l-transparent';
   };
 
   const filters = [
@@ -53,29 +69,44 @@ export default function NewsFeed({ limit = 20 }: { limit?: number }) {
 
   if (loading) {
     return (
-      <div className="space-y-2">
-        {[...Array(5)].map((_, i) => (
-          <div key={i} className="h-16 bg-[var(--bg-card)] rounded-[var(--radius)] animate-pulse" />
-        ))}
+      <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] overflow-hidden">
+        <div className="px-5 py-4 border-b border-[var(--border-color)]">
+          <div className="h-5 w-32 bg-[var(--bg-elevated)] rounded animate-pulse" />
+        </div>
+        <div className="p-4 space-y-2">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="h-16 bg-[var(--bg-secondary)] rounded-lg animate-pulse" />
+          ))}
+        </div>
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] overflow-hidden relative">
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
+
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <h2 className="text-base font-semibold">{t.news.realTimeNews}</h2>
+      <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border-color)]">
+        <div className="flex items-center gap-2.5">
+          <div className="flex items-center justify-center h-7 w-7 rounded-lg bg-[var(--accent-blue)]/10">
+            <Newspaper className="h-3.5 w-3.5 text-[var(--accent-blue)]" />
+          </div>
+          <div>
+            <h2 className="text-[15px] font-bold">{t.news.realTimeNews}</h2>
+          </div>
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--accent-green)] live-dot" />
         </div>
-        <button onClick={fetchNews} className="text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors">
+        <button
+          onClick={fetchNews}
+          className="flex items-center justify-center h-8 w-8 rounded-lg text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] transition-all"
+        >
           <RefreshCw className="h-3.5 w-3.5" />
         </button>
       </div>
 
       {/* Filters */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-1">
+      <div className="flex gap-1.5 px-5 py-3 overflow-x-auto border-b border-[var(--border-subtle)]">
         {filters.map(f => (
           <button
             key={f.id}
@@ -88,31 +119,52 @@ export default function NewsFeed({ limit = 20 }: { limit?: number }) {
       </div>
 
       {/* News List */}
-      <div className="space-y-1">
+      <div className="divide-y divide-[var(--border-subtle)]">
         {filtered.slice(0, limit).map((item) => (
           <a
             key={item.id}
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block rounded-lg px-4 py-3.5 transition-colors hover:bg-[var(--bg-card)] group"
+            className={`block px-5 py-3.5 transition-colors hover:bg-[var(--bg-card-hover)] group border-l-2 ${sentimentBg(item.sentiment)}`}
           >
-            <div className="flex items-start gap-2.5">
-              <div className={`mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 ${sentimentDot(item.sentiment)}`} />
+            <div className="flex items-start gap-3">
               <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-medium leading-snug group-hover:text-[var(--accent-blue)] transition-colors line-clamp-2">
+                <h3 className="text-[13px] font-medium leading-[1.5] group-hover:text-[var(--accent-blue)] transition-colors line-clamp-2">
                   {item.title}
                 </h3>
-                <div className="flex items-center gap-2.5 mt-1.5">
-                  <span className="text-[11px] text-[var(--accent-blue)]/70">{item.source}</span>
-                  <span className="text-[11px] text-[var(--text-tertiary)]">{timeAgo(item.publishedAt)}</span>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="text-[11px] font-medium px-1.5 py-0.5 rounded bg-[var(--bg-elevated)] text-[var(--accent-blue)]">
+                    {item.source}
+                  </span>
+                  <span className="text-[11px] text-[var(--text-muted)]">{timeAgo(item.publishedAt)}</span>
+                  <div className={`h-1.5 w-1.5 rounded-full ${sentimentColor(item.sentiment)}`} />
                 </div>
               </div>
-              <ExternalLink className="h-3 w-3 text-[var(--text-tertiary)] shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <ExternalLink className="h-3.5 w-3.5 text-[var(--text-muted)] shrink-0 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
           </a>
         ))}
       </div>
+
+      {filtered.length === 0 && (
+        <div className="text-center py-10 px-5">
+          {error ? (
+            <div>
+              <p className="text-sm text-[var(--text-tertiary)] mb-3">Failed to load news</p>
+              <button
+                onClick={fetchNews}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[var(--accent-blue)] text-white text-xs font-medium hover:opacity-90 transition-opacity"
+              >
+                <RefreshCw className="h-3 w-3" />
+                Retry
+              </button>
+            </div>
+          ) : (
+            <p className="text-sm text-[var(--text-tertiary)]">{t.common.noData || 'No news found'}</p>
+          )}
+        </div>
+      )}
     </div>
   );
 }

@@ -57,10 +57,13 @@ export default function KimchiPremiumTable() {
 
   if (loading) {
     return (
-      <div className="card !p-0 overflow-hidden">
+      <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] overflow-hidden">
+        <div className="px-5 py-4 border-b border-[var(--border-color)]">
+          <div className="h-5 w-40 bg-[var(--bg-elevated)] rounded animate-pulse" />
+        </div>
         <div className="p-4 space-y-2">
           {[...Array(8)].map((_, i) => (
-            <div key={i} className="h-10 bg-[var(--bg-secondary)] rounded animate-pulse" />
+            <div key={i} className="h-10 bg-[var(--bg-secondary)] rounded-lg animate-pulse" />
           ))}
         </div>
       </div>
@@ -68,16 +71,17 @@ export default function KimchiPremiumTable() {
   }
 
   return (
-    <div className="card overflow-hidden !p-0">
+    <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] overflow-hidden relative">
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
       {/* Header */}
       <div className="px-5 py-4 border-b border-[var(--border-color)]">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-base font-semibold">{t.kimchi.monitor}</h2>
+            <h2 className="text-[15px] font-bold">{t.kimchi.monitor}</h2>
             <p className="text-xs text-[var(--text-tertiary)] mt-0.5">{t.kimchi.subtitle}</p>
           </div>
-          <button onClick={fetchData} className="flex items-center rounded-md px-2 py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors">
-            <RefreshCw className="h-3 w-3" />
+          <button onClick={fetchData} className="flex items-center justify-center h-8 w-8 rounded-lg text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] transition-all">
+            <RefreshCw className="h-3.5 w-3.5" />
           </button>
         </div>
 
@@ -104,13 +108,13 @@ export default function KimchiPremiumTable() {
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-[var(--border-color)]">
-              <th className="px-5 py-3 text-left text-xs font-medium text-[var(--text-tertiary)] uppercase tracking-wider">{t.common.coin}</th>
-              <th className="px-5 py-3 text-right text-xs font-medium text-[var(--text-tertiary)] uppercase tracking-wider">{t.kimchi.upbitKRW}</th>
-              <th className="px-5 py-3 text-right text-xs font-medium text-[var(--text-tertiary)] uppercase tracking-wider">{t.kimchi.binanceKRW}</th>
+            <tr className="border-b border-[var(--border-color)] bg-[var(--bg-secondary)]/40">
+              <th className="px-5 py-3 text-left text-[11px] font-semibold text-[var(--text-tertiary)] uppercase tracking-[0.05em]">{t.common.coin}</th>
+              <th className="px-5 py-3 text-right text-[11px] font-semibold text-[var(--text-tertiary)] uppercase tracking-[0.05em]">{t.kimchi.upbitKRW}</th>
+              <th className="px-5 py-3 text-right text-[11px] font-semibold text-[var(--text-tertiary)] uppercase tracking-[0.05em]">{t.kimchi.binanceKRW}</th>
               <th
                 onClick={() => setSortAsc(!sortAsc)}
-                className="px-5 py-3 text-right text-xs font-medium text-[var(--text-tertiary)] uppercase tracking-wider cursor-pointer hover:text-[var(--text-secondary)] transition-colors"
+                className="px-5 py-3 text-right text-[11px] font-semibold text-[var(--text-tertiary)] uppercase tracking-[0.05em] cursor-pointer hover:text-[var(--text-secondary)] transition-colors"
               >
                 <div className="flex items-center justify-end gap-1">
                   {t.kimchi.premium}
@@ -121,7 +125,7 @@ export default function KimchiPremiumTable() {
           </thead>
           <tbody>
             {sorted.map((item) => (
-              <tr key={item.symbol} className="border-b border-[var(--border-color)]/40 hover:bg-[var(--bg-card-hover)] transition-colors">
+              <tr key={item.symbol} className="border-b border-[var(--border-subtle)] hover:bg-[var(--bg-card-hover)] transition-colors">
                 <td className="px-5 py-3.5">
                   <span className="text-sm font-medium">{item.symbol}</span>
                 </td>

@@ -1,45 +1,41 @@
-'use client';
+import type { Metadata } from 'next';
+import { getDictionary } from '@/i18n/getDictionary';
+import { i18n, type Locale } from '@/i18n/config';
+import { SITE_URL, SITE_NAME, OG_LOCALE_MAP } from '@/lib/constants';
+import SocialPageClient from './SocialPageClient';
 
-import SocialFeed from '@/components/SocialFeed';
-import AdBanner from '@/components/AdBanner';
-import { CRYPTO_INFLUENCERS } from '@/lib/constants';
-import { CheckCircle2 } from 'lucide-react';
-import { useDictionary } from '@/i18n/DictionaryProvider';
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = (i18n.locales.includes(lang as Locale) ? lang : i18n.defaultLocale) as Locale;
+  const dictionary = await getDictionary(locale);
+  const canonicalUrl = `${SITE_URL}/${locale}/social`;
 
-export default function SocialPage() {
-  const { dictionary: t } = useDictionary();
+  return {
+    title: dictionary.pageSeo.social.title,
+    description: dictionary.pageSeo.social.description,
+    openGraph: {
+      title: dictionary.pageSeo.social.title,
+      description: dictionary.pageSeo.social.description,
+      url: canonicalUrl,
+      siteName: SITE_NAME,
+      locale: OG_LOCALE_MAP[locale],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: dictionary.pageSeo.social.title,
+      description: dictionary.pageSeo.social.description,
+    },
+    alternates: {
+      canonical: canonicalUrl,
+      languages: Object.fromEntries([
+        ...i18n.locales.map((l) => [l, `${SITE_URL}/${l}/social`]),
+        ['x-default', `${SITE_URL}/en/social`],
+      ]),
+    },
+  };
+}
 
-  return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-xl font-semibold mb-1">{t.social.title}</h1>
-        <p className="text-sm text-[var(--text-secondary)]">{t.social.subtitle}</p>
-      </div>
-
-      {/* Influencer list */}
-      <div className="card">
-        <h2 className="text-xs font-medium text-[var(--text-tertiary)] uppercase tracking-wider mb-4">{t.social.monitoring}</h2>
-        <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {CRYPTO_INFLUENCERS.slice(0, 6).map((inf) => (
-            <div key={inf.handle} className="flex items-center gap-3 rounded-lg bg-[var(--bg-secondary)] px-4 py-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent-blue)]/10 text-[var(--accent-blue)] text-sm font-semibold shrink-0">
-                {inf.name.charAt(0)}
-              </div>
-              <div className="min-w-0">
-                <div className="flex items-center gap-1">
-                  <span className="text-[13px] font-medium truncate">{inf.name}</span>
-                  {inf.verified && <CheckCircle2 className="h-3 w-3 text-[var(--accent-blue)] shrink-0" />}
-                </div>
-                <span className="text-[10px] text-[var(--text-tertiary)]">@{inf.handle} · {inf.followers}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <AdBanner slot="social-top" className="min-h-[90px]" />
-      <SocialFeed limit={60} />
-      <AdBanner slot="social-bottom" className="min-h-[90px]" />
-    </div>
-  );
+export default function SocialPagePage() {
+  return <SocialPageClient />;
 }

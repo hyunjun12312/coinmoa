@@ -1,24 +1,41 @@
-'use client';
+import type { Metadata } from 'next';
+import { getDictionary } from '@/i18n/getDictionary';
+import { i18n, type Locale } from '@/i18n/config';
+import { SITE_URL, SITE_NAME, OG_LOCALE_MAP } from '@/lib/constants';
+import ToolsPageClient from './ToolsPageClient';
 
-import AdBanner from '@/components/AdBanner';
-import ToolsClient from '@/components/ToolsClient';
-import { useDictionary } from '@/i18n/DictionaryProvider';
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = (i18n.locales.includes(lang as Locale) ? lang : i18n.defaultLocale) as Locale;
+  const dictionary = await getDictionary(locale);
+  const canonicalUrl = `${SITE_URL}/${locale}/tools`;
 
-export default function ToolsPage() {
-  const { dictionary: t } = useDictionary();
+  return {
+    title: dictionary.pageSeo.tools.title,
+    description: dictionary.pageSeo.tools.description,
+    openGraph: {
+      title: dictionary.pageSeo.tools.title,
+      description: dictionary.pageSeo.tools.description,
+      url: canonicalUrl,
+      siteName: SITE_NAME,
+      locale: OG_LOCALE_MAP[locale],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: dictionary.pageSeo.tools.title,
+      description: dictionary.pageSeo.tools.description,
+    },
+    alternates: {
+      canonical: canonicalUrl,
+      languages: Object.fromEntries([
+        ...i18n.locales.map((l) => [l, `${SITE_URL}/${l}/tools`]),
+        ['x-default', `${SITE_URL}/en/tools`],
+      ]),
+    },
+  };
+}
 
-  return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-xl font-semibold mb-1">{t.tools.title}</h1>
-        <p className="text-sm text-[var(--text-secondary)]">{t.tools.subtitle}</p>
-      </div>
-
-      <AdBanner slot="tools-top" className="min-h-[90px]" />
-
-      <ToolsClient />
-
-      <AdBanner slot="tools-bottom" className="min-h-[90px]" />
-    </div>
-  );
+export default function ToolsPagePage() {
+  return <ToolsPageClient />;
 }

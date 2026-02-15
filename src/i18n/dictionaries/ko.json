@@ -153,5 +153,35 @@
     "disclaimerFull": "본 사이트는 정보 제공 목적이며, 투자 권유가 아닙니다. 암호화폐 투자는 원금 손실의 위험이 있습니다.",
     "copyright": "© 2026 CryptoPulse. 실시간 크립토 정보 플랫폼.",
     "dataBy": "Data by CoinGecko, Upbit, Binance, CryptoCompare"
+  },
+  "pageSeo": {
+    "dashboard": {
+      "title": "실시간 암호화폐 대시보드",
+      "description": "비트코인, 이더리움 등 100개 이상 코인의 실시간 시세, 시가총액, 거래량, 시장 동향을 추적하세요."
+    },
+    "news": {
+      "title": "크립토 뉴스",
+      "description": "전 세계 주요 미디어의 최신 암호화폐 뉴스와 실시간 감성 분석을 확인하세요."
+    },
+    "social": {
+      "title": "크립토 소셜 피드",
+      "description": "주요 크립토 인플루언서, Reddit, 커뮤니티의 실시간 게시물과 자동 태깅된 코인 키워드를 확인하세요."
+    },
+    "kimchi": {
+      "title": "김치프리미엄 모니터",
+      "description": "업비트 원화와 바이낸스 USDT 가격을 실시간 비교하여 김치프리미엄을 추적합니다. 30초마다 자동 갱신."
+    },
+    "tools": {
+      "title": "코인 투자 도구",
+      "description": "무료 암호화폐 계산기: 수익률 계산기, 포지션 사이즈 계산기, 코인 변환기를 제공합니다."
+    },
+    "search": {
+      "title": "암호화폐 검색",
+      "description": "이름 또는 심볼로 암호화폐를 검색하세요. 실시간 시세, 시가총액, 상세 코인 정보를 확인할 수 있습니다."
+    },
+    "coinDetail": {
+      "title": "{name} 시세 및 차트",
+      "description": "실시간 {name}({symbol}) 시세, 시가총액, 거래량, 가격 차트 및 상세 마켓 데이터를 CryptoPulse에서 확인하세요."
+    }
   }
 }

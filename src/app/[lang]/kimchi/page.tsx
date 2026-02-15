@@ -1,45 +1,41 @@
-'use client';
+import type { Metadata } from 'next';
+import { getDictionary } from '@/i18n/getDictionary';
+import { i18n, type Locale } from '@/i18n/config';
+import { SITE_URL, SITE_NAME, OG_LOCALE_MAP } from '@/lib/constants';
+import KimchiPageClient from './KimchiPageClient';
 
-import KimchiPremiumTable from '@/components/KimchiPremiumTable';
-import AdBanner from '@/components/AdBanner';
-import { useDictionary } from '@/i18n/DictionaryProvider';
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = (i18n.locales.includes(lang as Locale) ? lang : i18n.defaultLocale) as Locale;
+  const dictionary = await getDictionary(locale);
+  const canonicalUrl = `${SITE_URL}/${locale}/kimchi`;
 
-export default function KimchiPage() {
-  const { dictionary: t } = useDictionary();
+  return {
+    title: dictionary.pageSeo.kimchi.title,
+    description: dictionary.pageSeo.kimchi.description,
+    openGraph: {
+      title: dictionary.pageSeo.kimchi.title,
+      description: dictionary.pageSeo.kimchi.description,
+      url: canonicalUrl,
+      siteName: SITE_NAME,
+      locale: OG_LOCALE_MAP[locale],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: dictionary.pageSeo.kimchi.title,
+      description: dictionary.pageSeo.kimchi.description,
+    },
+    alternates: {
+      canonical: canonicalUrl,
+      languages: Object.fromEntries([
+        ...i18n.locales.map((l) => [l, `${SITE_URL}/${l}/kimchi`]),
+        ['x-default', `${SITE_URL}/en/kimchi`],
+      ]),
+    },
+  };
+}
 
-  return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-xl font-semibold mb-1">{t.kimchi.title}</h1>
-        <p className="text-sm text-[var(--text-secondary)]">{t.kimchi.subtitle}</p>
-      </div>
-
-      <AdBanner slot="kimchi-top" className="min-h-[90px]" />
-
-      <KimchiPremiumTable />
-
-      <div className="card">
-        <h3 className="text-xs font-medium text-[var(--text-tertiary)] uppercase tracking-wider mb-2">{t.kimchi.whatIs}</h3>
-        <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">
-          {t.kimchi.whatIsDesc}
-        </p>
-        <div className="mt-3 grid grid-cols-3 gap-2 text-center text-[11px]">
-          <div className="rounded-lg bg-[var(--accent-green)]/8 px-2 py-2">
-            <div className="font-medium text-[var(--accent-green)]">{t.kimchi.positive}</div>
-            <div className="text-[var(--text-secondary)] mt-0.5">{t.kimchi.positiveDesc}</div>
-          </div>
-          <div className="rounded-lg bg-[var(--accent-yellow)]/8 px-2 py-2">
-            <div className="font-medium text-[var(--accent-yellow)]">{t.kimchi.zero}</div>
-            <div className="text-[var(--text-secondary)] mt-0.5">{t.kimchi.zeroDesc}</div>
-          </div>
-          <div className="rounded-lg bg-[var(--accent-red)]/8 px-2 py-2">
-            <div className="font-medium text-[var(--accent-red)]">{t.kimchi.negative}</div>
-            <div className="text-[var(--text-secondary)] mt-0.5">{t.kimchi.negativeDesc}</div>
-          </div>
-        </div>
-      </div>
-
-      <AdBanner slot="kimchi-bottom" className="min-h-[90px]" />
-    </div>
-  );
+export default function KimchiPagePage() {
+  return <KimchiPageClient />;
 }
